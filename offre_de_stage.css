@@ -1,0 +1,117 @@
+
+body {
+    background-color: #eef2f6; 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    color: #334155;
+}
+
+
+head { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 15px; 
+    background: white;
+     border-bottom: 1px solid #e2e8f0;
+ } 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+h1 {
+    font-size: 28px;
+    padding: 20px;
+    margin: 0;
+    color: #2d3748;
+}
+
+#search-bar {
+    background: white;
+    margin: 15px;
+    padding: 25px 20px;
+    border: 1px solid #d1d9e0;
+    border-radius: 4px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+
+#search {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: 12px center;
+}
+
+
+#filter {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #e2e8f0;
+    border: 1px solid #cbd5e0;
+    border-radius: 30px;
+    padding: 10px 60px;
+    font-size: 18px;
+    color: #475569;
+    cursor: pointer;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: 35px center;
+}
+
+
+.offer {
+    background: white;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.offer h2 { margin: 0 0 10px 0; color: #1a202c; font-size: 20px; }
+.offer h3 { margin: 0 0 15px 0; color: #3182ce; font-size: 16px; font-weight: 500; }
+
+.offer p { margin: 5px 0; font-size: 15px; color: #4a5568; }
+
+
+.offer p strong {
+    color: #718096;
+    display: inline-block;
+    width: 80px;
+}
+
+.date {
+    margin-top: 20px !important;
+    color: #a0aec0 !important;
+    font-size: 14px !important;
+}
+
+
+#details {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ebf8ff;
+    color: #2b6cb0;
+    border: 1px solid #3182ce;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+label[for="details"] { display: none; }
