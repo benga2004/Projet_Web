@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page de candidature</title>
+</head>
+<body>
+
+    <!-- ================= NAVBAR (ZONE RESERVEE) ================= -->
+    <div id="navbar">
+        <!-- Navbar à modifier plus tard -->
+        <hr>
+    </div>
+
+    <h2>Formulaire de candidature</h2>
+
+    <form>
+
+        <!-- ================= BLOC 1 : INFOS ENTREPRISE ================= -->
+        <fieldset>
+            <legend>Informations de l'entreprise</legend>
+
+            <!-- Bloc vide réservé aux données récupérées ultérieurement -->
+            <div id="entreprise">
+                <!-- Les informations de l'entreprise seront affichées ici -->
+            </div>
+
+        </fieldset>
+
+        <br>
+
+        <!-- ================= BLOC 2 : IMPORT CV ================= -->
+        <fieldset>
+            <legend>Importer votre CV</legend>
+
+            <label for="cv">Sélectionner un fichier :</label><br><br>
+            <input type="file" id="cv" name="cv">
+
+        </fieldset>
+
+        <br>
+
+        <!-- ================= BLOC 3 : LETTRE DE MOTIVATION ================= -->
+        <fieldset>
+            <legend>Lettre de motivation</legend>
+
+            <label for="motivation">Votre message :</label><br><br>
+            <textarea id="motivation" name="motivation" rows="10" cols="50"></textarea>
+
+        </fieldset>
+
+        <br>
+
+        <!-- ================= BOUTON ENVOYER ================= -->
+        <button type="submit">Envoyer</button>
+
+    </form>
+
+</body>
+</html>
