@@ -1,11 +1,120 @@
-<!DOCTYPE>
-<html>
-  <head>
-    <title>WinAstage | Accueil</title>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Recherche d’offres</title>
+</head>
+<!--Il n'y a rien ici-->
+<body>
 
-  </head>
+  <!-- En-tête -->
+  <header>
+    <img src="logo.png" alt="Logo de la plateforme">
 
-  <body>
-    
-  </body>
+
+  <button 
+    id="menu-toggle"
+    aria-label="Ouvrir le menu"
+    aria-expanded="false"
+    aria-controls="main-menu">
+    ☰
+  </button>
+
+  <nav id="main-menu" hidden>
+    <ul>
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Offres</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+  const toggleButton = document.getElementById("menu-toggle");
+  const menu = document.getElementById("main-menu");
+
+  toggleButton.addEventListener("click", () => {
+
+    const isOpen = toggleButton.getAttribute("aria-expanded") === "true";
+
+    toggleButton.setAttribute("aria-expanded", !isOpen);
+    menu.hidden = isOpen;
+
+  });
+</script>
+
+    <!-- <nav>
+      <button aria-label="Ouvrir le menu">
+        ☰
+      </button>
+    </nav> -->
+  </header>
+
+  <!-- Contenu principal -->
+  <main>
+
+    <!-- Section recherche -->
+    <section>
+      <h1>Rechercher une offre</h1>
+
+      <form action="#" method="get">
+
+        <label>
+          Entreprise, profil ou compétence
+          <input type="search" name="query" placeholder="Entreprise, profil, compétence">
+        </label>
+
+        <label>
+          Ville
+          <input type="text" name="ville" placeholder="Ville">
+        </label>
+
+        <label>
+          Domaine
+          <select name="domaine">
+            <option value="">Tous les domaines</option>
+            <option value="informatique">Informatique</option>
+            <option value="marketing">Marketing</option>
+            <option value="industrie">Industrie</option>
+          </select>
+        </label>
+
+        <button type="submit">Rechercher</button>
+      </form>
+    </section>
+
+    <!-- Résultat / Carte d’offre -->
+    <section>
+      <h2>Offres disponibles</h2>
+
+      <article>
+        <img src="entreprise.png" alt="Logo de l’entreprise">
+
+        <h3>Nom de l’entreprise</h3>
+
+        <p><strong>Type de contrat :</strong> Stage</p>
+        <p><strong>Ville :</strong> Cotonou</p>
+        <p>
+          <strong>Durée :</strong>
+          <time datetime="P6M">6 mois</time>
+        </p>
+
+        <ul>
+          <li>Compétence clé</li>
+          <li>Compétence clé</li>
+          <li>Compétence clé</li>
+        </ul>
+
+        <a href="#">Voir l’offre</a>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- Pied de page -->
+  <footer>
+    <p>© Plateforme de recrutement</p>
+  </footer>
+
+</body>
 </html>
