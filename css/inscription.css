@@ -1,0 +1,345 @@
+/* ============================================
+   RESET & BASE STYLES - MOBILE FIRST
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ============================================
+   PHONE FRAME - MOBILE
+   ============================================ */
+
+.phone-frame {
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   STATUS BAR - MOBILE
+   ============================================ */
+
+.status-bar {
+    background: #000;
+    color: white;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-bar-left,
+.status-bar-right {
+    flex: 1;
+}
+
+.status-bar-right {
+    text-align: right;
+}
+
+/* ============================================
+   HEADER - MOBILE
+   ============================================ */
+
+header.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.logo-icon {
+    background: white;
+    color: #667eea;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.menu-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.2s;
+}
+
+.menu-icon:active {
+    transform: scale(0.95);
+}
+
+/* ============================================
+   CONTENT - MOBILE
+   ============================================ */
+
+main.content {
+    flex: 1;
+    padding: 24px 20px;
+    overflow-y: auto;
+}
+
+.content h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* ============================================
+   FORM - MOBILE
+   ============================================ */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ============================================
+   FORM GROUP - MOBILE
+   ============================================ */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    color: #555;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+/* ============================================
+   BUTTON - MOBILE
+   ============================================ */
+
+.btn-submit {
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px 0 16px 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.btn-submit:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 5px rgba(102, 126, 234, 0.3);
+}
+
+/* ============================================
+   AUTH LINKS SECTIONS - MOBILE
+   ============================================ */
+
+.login-section,
+.forgot-password,
+.signup-section {
+    text-align: center;
+    padding: 12px 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 12px;
+}
+
+.login-section p,
+.signup-section p {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.login-section a,
+.forgot-password a,
+.signup-section a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: inline-block;
+    padding: 4px 0;
+}
+
+.login-section a:active,
+.forgot-password a:active,
+.signup-section a:active {
+    color: #764ba2;
+}
+
+/* ============================================
+   MEDIA QUERIES - TABLET (min-width: 768px)
+   ============================================ */
+
+@media (min-width: 768px) {
+    body {
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .phone-frame {
+        width: 375px;
+        border-radius: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        border: 8px solid #000;
+        height: auto;
+        max-height: 90vh;
+    }
+    
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
+    
+    .logo {
+        font-size: 17px;
+    }
+    
+    main.content {
+        padding: 28px 24px;
+    }
+    
+    .content h1 {
+        font-size: 26px;
+        margin-bottom: 28px;
+    }
+    
+    .form-group {
+        margin-bottom: 18px;
+    }
+    
+    .form-group label {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .form-group input {
+        padding: 13px;
+        font-size: 15px;
+    }
+    
+    .btn-submit {
+        padding: 15px 16px;
+        font-size: 16px;
+        margin: 24px 0 18px 0;
+    }
+    
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+}
+
+/* ============================================
+   MEDIA QUERIES - DESKTOP (min-width: 1024px)
+   ============================================ */
+
+@media (min-width: 1024px) {
+    .phone-frame {
+        border-radius: 45px;
+        border: 10px solid #000;
+    }
+    
+    main.content {
+        padding: 32px 28px;
+    }
+    
+    .content h1 {
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+}
