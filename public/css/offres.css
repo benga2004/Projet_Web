@@ -1,0 +1,33 @@
+.offer-card{
+
+background:white;
+
+border-radius:12px;
+
+padding:16px;
+
+margin-bottom:16px;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+.offer-card h2{
+
+font-size:18px;
+
+color:#333;
+
+margin-bottom:6px;
+
+}
+
+.company{
+
+color:#667eea;
+
+font-weight:600;
+
+margin-bottom:10px;
+
+}
