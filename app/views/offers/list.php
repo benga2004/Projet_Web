@@ -1,39 +1,8 @@
-<<!DOCTYPE html>
-<html lang="fr">
+<?php $title = "Offres de stage"; ?>
+<?php require __DIR__ . '/../layout/header.php'; ?>
 
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Offres de stage</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<link rel="stylesheet" href="../../../public/css/inscription.css">
-<link rel="stylesheet" href="../../../public/css/offres.css">
-
-
-</head>
-
-<body>
-
-<div class="phone-frame">
-
-<header class="header">
-
-<div class="logo">
-<div class="logo-icon">Logo</div>
-<span>StageHub</span>
-</div>
-
-</header>
 
 <h1>Offres de stage</h1>
-
-
-<main class="content">
-    
 <section id="search-bar" aria-label="Rechercher une offre">
     <form action="" method="get" class="search-form" autocomplete="off">
         <div class="field">
@@ -94,7 +63,6 @@
 
 <?php endforeach; ?>
 
-</main>
 <!-- Pagination -->
 <div class="pagination">
     <?php if ($page > 1): ?>
@@ -117,9 +85,4 @@
     <?php endif; ?>
 </div>
 
-</div>
-
-
-</body>
-
-</html>
+<?php require __DIR__ . '/../layout/footer.php'; ?>
