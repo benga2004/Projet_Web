@@ -1,39 +1,47 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?php $title = "Offres de stage"; ?>
+<?php require __DIR__ . '/../layout/header.php'; ?>
 
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Offres</title>
-
-<link rel="stylesheet" href="../css/inscription.css">
-<link rel="stylesheet" href="../css/offres.css">
-
-</head>
-
-<body>
-
-<div class="phone-frame">
-
-<header class="header">
-
-<div class="logo">
-<div class="logo-icon">Logo</div>
-<span>StageHub</span>
-</div>
-
-</header>
-
-<main class="content">
 
 <h1>Offres de stage</h1>
+<section id="search-bar" aria-label="Rechercher une offre">
+    <form action="" method="get" class="search-form" autocomplete="off">
+        <div class="field">
+            <label for="company-search" class="field-label">
+                <i class="fas fa-building" aria-hidden="true"></i>
+            </label>
+            <input id="company-search" class="field-input" type="search" name="query" placeholder="Entreprise, profil, compétence...">
+        </div>
+
+        <div class="field">
+            <label for="city-search" class="field-label">
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            </label>
+            <input id="city-search" class="field-input" type="text" name="ville" placeholder="Ville">
+        </div>
+
+        <div class="field">
+            <label for="domain-search" class="field-label">
+                <i class="fas fa-briefcase" aria-hidden="true"></i>
+            </label>
+            <select id="domain-search" name="domaine" class="field-input">
+                <option value="">Tous les domaines</option>
+                <option value="informatique">Informatique</option>
+                <option value="marketing">Marketing</option>
+                <option value="industrie">Industrie</option>
+                <option value="design">Design</option>
+                <option value="finance">Finance</option>
+            </select>
+        </div>
+
+        <button type="submit" class="search-button">Rechercher</button>
+    </form>
+</section>
 
 <p class="info">
 <?= $total ?> offres disponibles
 </p>
+
+
 
 <?php foreach ($offresPage as $offre): ?>
 
@@ -55,10 +63,26 @@
 
 <?php endforeach; ?>
 
-</main>
+<!-- Pagination -->
+<div class="pagination">
+    <?php if ($page > 1): ?>
+        <a href="?page=<?= $page - 1 ?>">&#8249; Précédent</a>
+    <?php endif; ?>
 
+    <?php /* for ($i = 1; $i <= $pages; $i++): ?>
+        <?php if ($i === $page): ?>
+            <strong><?= $i ?></strong>
+        <?php else: ?>
+            <a href="?page=<?= $i ?>"><?= $i ?></a>
+        <?php endif; ?>
+    <?php endfor; */ ?>
+    <?= $page ?>/<?= $pages?> 
+
+    
+
+    <?php if ($page < $pages): ?>
+        <a href="?page=<?= $page + 1 ?>">Suivant &#8250;</a>
+    <?php endif; ?>
 </div>
 
-</body>
-
-</html>
+<?php require __DIR__ . '/../layout/footer.php'; ?>

@@ -38,42 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+require __DIR__ . '/../views/connexion.php';
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Connexion à StageHub">
-    <title>Connexion - StageHub</title>
-</head>
-<body>
-
-    <h1>Connectez-Vous</h1>
-
-    <?php if (!empty($erreur)): ?>
-        <p>⚠️ <?= htmlspecialchars($erreur, ENT_QUOTES, 'UTF-8') ?></p>
-    <?php endif; ?>
-
-    <form action="" method="POST">
-
-        <label for="email">Adresse E-mail</label><br>
-        <input type="email" id="email" name="email"
-            value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
-            required><br><br>
-
-        <label for="password">Mot de passe</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <button type="submit">Connexion</button>
-
-    </form>
-
-    <br>
-    <a href="#forgot">Mot de passe oublié ?</a>
-
-    <br><br>
-    <p>Vous n'avez pas de compte ? <a href="inscription.html">Inscrivez-Vous</a></p>
-
-</body>
-</html>
