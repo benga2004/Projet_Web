@@ -1,0 +1,358 @@
+/* ============================================
+   RESET & BASE
+   ============================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ============================================
+   PHONE FRAME
+   ============================================ */
+.phone-frame {
+    width: 375px;
+    background: #f5f6fa;
+    border-radius: 40px;
+    border: 8px solid #000;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+}
+
+/* ============================================
+   STATUS BAR
+   ============================================ */
+.status-bar {
+    background: #000;
+    color: white;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+.status-bar-left, .status-bar-right { flex: 1; }
+.status-bar-right { text-align: right; }
+
+/* ============================================
+   HEADER
+   ============================================ */
+header.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: bold; }
+.logo-icon {
+    background: white; color: #667eea;
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 12px;
+}
+.menu-icon {
+    background: none; border: none; color: white;
+    font-size: 20px; cursor: pointer; padding: 8px;
+    transition: transform 0.2s;
+}
+.menu-icon:active { transform: scale(0.95); }
+
+/* ============================================
+   CONTENT
+   ============================================ */
+main.content {
+    flex: 1;
+    padding: 0 0 20px;
+    overflow-y: auto;
+}
+
+/* ============================================
+   AVATAR
+   ============================================ */
+.avatar-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 20px 16px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+.avatar-btn {
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    cursor: pointer;
+    transition: background .2s;
+}
+.avatar-btn:hover { background: rgba(255,255,255,0.25); }
+
+h1 {
+    text-align: center;
+    font-size: 20px;
+    color: #1a202c;
+    padding: 14px 20px 2px;
+    font-weight: 700;
+}
+
+.role-badge {
+    text-align: center;
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #667eea;
+    padding-bottom: 14px;
+}
+
+/* ============================================
+   ONGLETS
+   ============================================ */
+.tabs {
+    display: flex;
+    background: white;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 4px;
+}
+.tab {
+    flex: 1; padding: 12px;
+    text-align: center; font-size: 13px; font-weight: 600;
+    color: #999; cursor: pointer; border: none; background: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+.tab.active { color: #667eea; border-bottom: 3px solid #667eea; }
+
+/* ============================================
+   PANELS
+   ============================================ */
+.panel { display: none; padding: 18px 20px 0; }
+.panel.active { display: block; }
+
+/* ============================================
+   FORM GROUP
+   ============================================ */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+.form-group label {
+    color: #555; font-weight: 600;
+    font-size: 13px; margin-bottom: 7px;
+}
+.form-group input,
+.form-group select {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #f9f9f9;
+    color: #333;
+    transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 8px rgba(102,126,234,0.3);
+}
+.form-group input::placeholder { color: #aaa; }
+
+/* ============================================
+   CV ZONE
+   ============================================ */
+.cv-zone {
+    background: #f0ecff;
+    border: 1.5px dashed #c0b0e8;
+    border-radius: 8px;
+    padding: 12px 14px;
+}
+.cv-current {
+    font-size: 13px;
+    color: #764ba2;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.cv-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-download, .btn-replace {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: opacity .2s;
+}
+.btn-download {
+    background: #667eea;
+    color: white;
+}
+.btn-replace {
+    background: #e0d9f7;
+    color: #764ba2;
+}
+.btn-download:hover, .btn-replace:hover { opacity: .85; }
+
+/* ============================================
+   COMPÉTENCES
+   ============================================ */
+.section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.skills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    background: #f0ecff;
+    color: #764ba2;
+    border: 1px solid #d4c5f9;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.skill-remove {
+    background: none; border: none;
+    color: #764ba2; cursor: pointer;
+    font-size: 11px; padding: 0; line-height: 1;
+}
+.skill-remove:hover { color: #c62828; }
+
+.add-skill-wrap {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.skill-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    background: #f9f9f9;
+    outline: none;
+    transition: border-color .2s;
+}
+.skill-input:focus { border-color: #667eea; background: white; }
+
+.btn-add-skill {
+    padding: 10px 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity .2s;
+}
+.btn-add-skill:hover { opacity: .85; }
+
+/* ============================================
+   BOUTON PRINCIPAL
+   ============================================ */
+.btn-submit {
+    width: 100%;
+    padding: 13px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    font-family: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+}
+.btn-submit:active { transform: translateY(2px); }
+
+/* ============================================
+   DÉCONNEXION
+   ============================================ */
+.login-section {
+    text-align: center;
+    padding: 14px 20px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 14px;
+}
+.login-section a {
+    color: #e53e3e;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+}
+.login-section a:hover { text-decoration: underline; }
+
+/* ============================================
+   UTILITAIRES
+   ============================================ */
+.sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+.logo-icon img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
