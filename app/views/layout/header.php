@@ -28,10 +28,10 @@
 
 <header class="header">
     <div class="logo">
-        <div class="logo-icon"><img src="../../../public/images/logo.png" alt="Logo InterStage"></div>
+        <div class="logo-icon">Logo</div>
         <span>StageHub</span>
     </div>
     <button class="menu-icon" aria-label="Menu">☰</button>
 </header>
 
-<main class="content"></main>
+<main class="content">

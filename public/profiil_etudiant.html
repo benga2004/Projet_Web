@@ -4,94 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil - StageHub</title>
-    <link rel="stylesheet" href="css/profil_etudiant.css">
-</head>
-<body>
-
-<div class="phone-frame">
-
-    <div class="status-bar">
-        <span class="status-bar-left">9:41</span>
-        <span>Mon Profil</span>
-        <span class="status-bar-right">● ● ●</span>
-    </div>
-
-    <header class="header">
+     <header class="header">
         <div class="logo">
-            <img src="images/Logo.png" alt="InterStage Logo" class="logo-icon">
-            InterStage
+            <div class="logo-icon">SL</div>
+            StageHub
         </div>
         <button class="menu-icon" aria-label="Menu">☰</button>
     </header>
 
     <main class="content">
 
-        <div class="profile-banner">
-            <h2>Bangaly Kaba</h2>
-            <span class="role-badge">Étudiant</span>
+        <!-- Onglets Étudiant / Entreprise -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('etudiant', this)"> Étudiant</button>
+            
         </div>
 
-        <div class="card">
-            <div class="card-title">Informations personnelles</div>
+        <!-- ══ PANEL ÉTUDIANT ══════════════════════════ -->
+        <div class="panel active" id="panel-etudiant">
 
-            <div class="info-row">
-                <div>
-                    <span class="label">Filière</span>
-                    <span>Informatique et numérique</span>
+            <div class="profile-banner">
+                <h2>Bangaly Kaba</h2>
+                <span class="role-badge">Étudiant</span>
+            </div>
+
+            <div class="avatar-wrap">
+                
+            </div>
+
+            <!-- Infos personnelles -->
+            <div class="card">
+                <div class="card-title">Informations personnelles</div>
+
+                <div class="info-row">
+                   
+                    <div>
+                        <span class="label">Email</span>
+                        bangalykaba0810@gmail.com
+                    </div>
                 </div>
-                <div>
-                    <span class="label">Email</span>
-                    <span>bangalykaba0810@gmail.com</span>
+                <div class="info-row">
+                    <span class="icon"></span>
+                    <div>
+                        <span class="label">Ville</span>
+                        44600 Saint-Nazaire
+                    </div>
+                </div>
+                <div class="info-row">
+                  
+                    <div>
+                        <span class="label">École</span>
+                        CESI École d'ingénieur
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="icon"></span>
+                    <div>
+                        <span class="label">Disponibilité</span>
+                        Septembre 2025
+                    </div>
                 </div>
             </div>
 
-            <div class="info-row">
-                <div>
-                    <span class="label">Ville</span>
-                    <span>44600 Saint-Nazaire</span>
-                </div>
-                <div>
-                    <span class="label">Téléphone</span>
-                    <span>+33 6 52 34 56 78</span>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <div>
-                    <span class="label">École</span>
-                    <span>CESI École d'ingénieur</span>
+            <!-- Compétences -->
+            <div class="card">
+                <div class="card-title">Compétences</div>
+                <div class="skills-wrap">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C / C++</span>
+                    <span class="skill-tag">HTML / CSS</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">Cisco Packet Tracer</span>
                 </div>
             </div>
 
-            <div class="info-row">
-                <div>
-                    <span class="label">Disponibilité</span>
-                    <span>Septembre 2025</span>
-                </div>
-            </div>
+            <button class="btn-edit">Modifier le profil</button>
+            <a class="btn-logout" href="connexion.php">Se déconnecter</a>
+
         </div>
 
-        <div class="card">
-            <div class="card-title">Compétences</div>
-            <div class="skills-wrap">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">C / C++</span>
-                <span class="skill-tag">HTML / CSS</span>
-                <span class="skill-tag">PHP</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">Arduino</span>
-                <span class="skill-tag">Cisco Packet Tracer</span>
-            </div>
-        </div>
-        <div class ="cv">
-           <label for="cv-upload" class="cv-label">CV</label>
-           <input type="file" id="cv-upload" class="cv-input">
-        </div>
-        <button class="btn-edit">Modifier le profil</button>
-        <a class="btn-logout" href="connexion.php">Se déconnecter</a>
+       
+
     </main>
-
 </div>
+
+
+</script>
 
 </body>
 </html>
