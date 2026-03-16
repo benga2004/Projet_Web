@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" href="/public/css/style.css">
 <link rel="stylesheet" href="/public/css/dashboard-pilote.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <?php
 // ============================================
@@ -15,10 +16,10 @@ $pilote = [
 ];
 
 $stats = [
-    ['icon' => '🎓', 'val' => 24, 'lbl' => 'Étudiants',   'delta' => 'Promo ' . $pilote['promo'], 'color' => 'var(--primary)', 'cls' => 'c1'],
-    ['icon' => '✅', 'val' => 4,  'lbl' => 'Stages',       'delta' => '1 ce mois',                 'color' => '#40c057',        'cls' => 'c2'],
-    ['icon' => '📨', 'val' => 38, 'lbl' => 'Candidatures', 'delta' => '5 cette semaine',           'color' => '#fd7e14',        'cls' => 'c3'],
-    ['icon' => '⚠️', 'val' => 4,  'lbl' => 'Sans cand.',   'delta' => 'À relancer',                'color' => '#fa5252',        'cls' => 'c4'],
+    ['icon' => '<i class="bi bi-mortarboard-fill"></i>', 'val' => 24, 'lbl' => 'Étudiants',   'delta' => 'Promo ' . $pilote['promo'], 'color' => 'var(--primary)', 'cls' => 'c1'],
+    ['icon' => '<i class="bi bi-check-circle-fill"></i>', 'val' => 4,  'lbl' => 'Stages',       'delta' => '1 ce mois',                 'color' => '#40c057',        'cls' => 'c2'],
+    ['icon' => '<i class="bi bi-envelope-fill"></i>',     'val' => 38, 'lbl' => 'Candidatures', 'delta' => '5 cette semaine',           'color' => '#fd7e14',        'cls' => 'c3'],
+    ['icon' => '<i class="bi bi-exclamation-triangle-fill"></i>', 'val' => 4, 'lbl' => 'Sans cand.', 'delta' => 'À relancer',           'color' => '#fa5252',        'cls' => 'c4'],
 ];
 
 $etudiants = [
@@ -41,10 +42,10 @@ $candidatures = [
 ];
 
 $activites = [
-    ['dot' => '#38a169', 'txt' => '✅ Bob a trouvé son stage – Airbus',  'time' => 'il y a 1h'],
-    ['dot' => '#6b5bcd', 'txt' => '📨 Alice a postulé chez Capgemini',   'time' => 'il y a 3h'],
-    ['dot' => '#d97706', 'txt' => "⚠️ David n'a aucune candidature",     'time' => 'il y a 5h'],
-    ['dot' => '#7a7a9d', 'txt' => '🏢 Nouvelle offre – Thales Lyon',     'time' => 'il y a 1j'],
+    ['dot' => '#38a169', 'icon' => 'bi-check-circle-fill',      'txt' => 'Bob a trouvé son stage – Airbus',  'time' => 'il y a 1h'],
+    ['dot' => '#6b5bcd', 'icon' => 'bi-envelope-fill',           'txt' => 'Alice a postulé chez Capgemini',   'time' => 'il y a 3h'],
+    ['dot' => '#d97706', 'icon' => 'bi-exclamation-triangle-fill','txt' => "David n'a aucune candidature",     'time' => 'il y a 5h'],
+    ['dot' => '#7a7a9d', 'icon' => 'bi-building',                 'txt' => 'Nouvelle offre – Thales Lyon',     'time' => 'il y a 1j'],
 ];
 ?>
 
@@ -53,7 +54,7 @@ $activites = [
 <!-- HERO -->
 <div class="hero">
     <div style="font-size:11px; color:#40c057; font-weight:700; margin-bottom:6px;">
-        <span class="hero-dot"></span>Session active
+        <i class="bi bi-circle-fill" style="font-size:8px;"></i> Session active
     </div>
     <p class="hero-sub">Pilote · Promotion <?= htmlspecialchars($pilote['promo']) ?></p>
     <span class="hero-badge">PILOTE DE PROMOTION</span>
@@ -63,7 +64,7 @@ $activites = [
 <div class="stats-grid">
     <?php foreach ($stats as $s): ?>
         <div class="stat-card <?= $s['cls'] ?>">
-            <div class="stat-icon"><?= $s['icon'] ?></div>
+            <div><?= $s['icon'] ?></div>
             <div class="stat-val"><?= $s['val'] ?></div>
             <div class="stat-lbl"><?= htmlspecialchars($s['lbl']) ?></div>
             <div class="stat-delta" style="color:<?= $s['color'] ?>">
@@ -140,7 +141,7 @@ $activites = [
             <label for="search">Rechercher</label>
             <input type="text" id="search" name="search" placeholder="Étudiant, entreprise…">
         </div>
-        <button type="submit" class="btn-submit">🔍 Rechercher</button>
+        <button type="submit" class="btn-submit"><i class="bi bi-search"></i> Rechercher</button>
     </fieldset>
 
     <?php foreach ($candidatures as $c): ?>
@@ -156,8 +157,8 @@ $activites = [
             <div style="display:flex; flex-direction:column; align-items:flex-end; gap:5px;">
                 <span class="badge <?= $c['badge'] ?>"><?= htmlspecialchars($c['statut']) ?></span>
                 <div style="display:flex; gap:4px;">
-                    <button class="btn-ghost">📄 CV</button>
-                    <button class="btn-ghost">✉️ LM</button>
+        <button type="button" class="btn-ghost"><i class="bi bi-file-earmark-person"></i> CV</button>
+                    <button type="button" class="btn-ghost"><i class="bi bi-file-earmark-text"></i> LM</button>
                 </div>
             </div>
         </div>
