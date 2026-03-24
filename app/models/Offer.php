@@ -1,34 +1,68 @@
 <?php
 class Offer {
+    private PDO $db;
 
-   public static function getAll(){
+    public function __construct() {
+        $this->db = Database::connect();
+    }
 
-      return [
-        ['titre' => 'Développeur Web Front-end',    'entreprise' => 'NovaTech Solutions',       'ville' => 'Paris',        'duree' => '3 mois', 'domaine' => 'Informatique'],
-        ['titre' => 'Stage Marketing Digital',       'entreprise' => 'BrandWave Agency',         'ville' => 'Lyon',         'duree' => '4 mois', 'domaine' => 'Marketing'],
-        ['titre' => 'Ingénieur Automatisme',         'entreprise' => 'IndusTrial Group',         'ville' => 'Nantes',       'duree' => '6 mois', 'domaine' => 'Industrie'],
-        ['titre' => 'UI/UX Designer',                'entreprise' => 'Pixel Studio',             'ville' => 'Bordeaux',     'duree' => '3 mois', 'domaine' => 'Design'],
-        ['titre' => 'Analyste Financier Junior',     'entreprise' => 'CapitalEdge Finance',      'ville' => 'Paris',        'duree' => '5 mois', 'domaine' => 'Finance'],
-        ['titre' => 'Développeur Back-end PHP',      'entreprise' => 'Cesi École d\'Ingénieurs', 'ville' => 'Saint-Nazaire','duree' => '3 mois', 'domaine' => 'Informatique'],
-        ['titre' => 'Chargé de Communication',       'entreprise' => 'ComMedia Group',           'ville' => 'Lille',        'duree' => '4 mois', 'domaine' => 'Marketing'],
-        ['titre' => 'Technicien Maintenance',        'entreprise' => 'SteelPro Industries',      'ville' => 'Dunkerque',    'duree' => '6 mois', 'domaine' => 'Industrie'],
-        ['titre' => 'Développeur Mobile iOS',        'entreprise' => 'AppForge Labs',            'ville' => 'Toulouse',     'duree' => '4 mois', 'domaine' => 'Informatique'],
-        ['titre' => 'Graphiste Motion Design',       'entreprise' => 'Lumi Creative',            'ville' => 'Montpellier',  'duree' => '3 mois', 'domaine' => 'Design'],
-        ['titre' => 'Contrôleur de Gestion',         'entreprise' => 'Nexio Holding',            'ville' => 'Strasbourg',   'duree' => '5 mois', 'domaine' => 'Finance'],
-        ['titre' => 'Data Analyst',                  'entreprise' => 'DataSphere',               'ville' => 'Paris',        'duree' => '4 mois', 'domaine' => 'Informatique'],
-        ['titre' => 'Chef de Projet Digital',        'entreprise' => 'AgileWorks',               'ville' => 'Rennes',       'duree' => '5 mois', 'domaine' => 'Marketing'],
-        ['titre' => 'Ingénieur Qualité',             'entreprise' => 'AeroLink Systèmes',        'ville' => 'Toulouse',     'duree' => '6 mois', 'domaine' => 'Industrie'],
-        ['titre' => 'Designer Produit',              'entreprise' => 'Forma Design Studio',      'ville' => 'Paris',        'duree' => '4 mois', 'domaine' => 'Design'],
-        ['titre' => 'Développeur Full Stack',        'entreprise' => 'SoftLink Technologies',    'ville' => 'Grenoble',     'duree' => '3 mois', 'domaine' => 'Informatique'],
-        ['titre' => 'Auditeur Junior',               'entreprise' => 'Veritas Audit & Conseil',  'ville' => 'Lyon',         'duree' => '5 mois', 'domaine' => 'Finance'],
-        ['titre' => 'Responsable Réseaux Sociaux',   'entreprise' => 'ViralBoost Studio',        'ville' => 'Nice',         'duree' => '3 mois', 'domaine' => 'Marketing'],
-        ['titre' => 'Ingénieur Logistique',          'entreprise' => 'SupplyChain Pro',          'ville' => 'Le Havre',     'duree' => '6 mois', 'domaine' => 'Industrie'],
-        ['titre' => 'Développeur Cybersécurité',     'entreprise' => 'CyberShield France',       'ville' => 'Lille',        'duree' => '4 mois', 'domaine' => 'Informatique'],
+    public function getAll(int $limit, int $offset): array {
+        $stmt = $this->db->prepare('SELECT * FROM offres LIMIT :limit OFFSET :offset');
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-      ];
+    public function count(): int {
+        return (int) $this->db->query('SELECT COUNT(*) FROM offres')->fetchColumn();
+    }
 
-   }
+    # @return array|bool
+    
+    public function getById(int $id): array { 
+        $stmt = $this->db->prepare('SELECT * FROM offres WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
+    public function create(array $data): bool {
+        $stmt = $this->db->prepare('
+            INSERT INTO offres (titre, description, entreprise_id, remuneration, date_offre)
+            VALUES (:titre, :description, :entreprise_id, :remuneration, NOW())
+        ');
+        return $stmt->execute([
+            ':titre'         => $data['jobTitle'],
+            ':description'   => $data['description'],
+            ':entreprise_id' => $data['entreprise_id'],
+            ':remuneration'  => $data['minSalary'],
+        ]);
+    }
+
+    public function update(int $id, array $data): bool {
+        $stmt = $this->db->prepare('
+            UPDATE offres SET titre=:titre, description=:description WHERE id=:id
+        ');
+        return $stmt->execute([':titre' => $data['titre'], ':description' => $data['description'], ':id' => $id]);
+    }
+
+    public function delete(int $id): bool {
+        $stmt = $this->db->prepare('DELETE FROM offres WHERE id = :id');
+        return $stmt->execute([':id' => $id]);
+    }
+
+    public function search(string $query, string $ville, string $domaine, int $limit, int $offset): array {
+        $sql = 'SELECT * FROM offres WHERE 1=1';
+        $params = [];
+        if ($query) { $sql .= ' AND (titre LIKE :q OR description LIKE :q)'; $params[':q'] = "%$query%"; }
+        if ($ville)  { $sql .= ' AND ville LIKE :v';   $params[':v'] = "%$ville%"; }
+        if ($domaine){ $sql .= ' AND domaine = :d';    $params[':d'] = $domaine; }
+        $sql .= ' LIMIT :limit OFFSET :offset';
+        $stmt = $this->db->prepare($sql);
+        foreach ($params as $k => $v) $stmt->bindValue($k, $v);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
-
-?>

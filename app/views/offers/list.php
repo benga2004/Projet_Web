@@ -2,6 +2,7 @@
 <?php require __DIR__ . '/../layout/header.php'; ?>
 
 
+<!--
 <h1>Offres de stage</h1>
 <section id="search-bar" aria-label="Rechercher une offre">
     <form action="" method="get" class="search-form" autocomplete="off">
@@ -35,7 +36,7 @@
 
         <button type="submit" class="search-button">Rechercher</button>
     </form>
-</section>
+</section> -->
 
 <p class="info">
 <?= $total ?> offres disponibles
@@ -57,7 +58,7 @@
 
 <p>Domaine : <?= htmlspecialchars($offre['domaine']) ?></p>
 
-<button class="btn-submit">Détails</button>
+<a href="<?= BASE_URL ?>offres/detail?id=<?= $offre['id'] ?>">Détails</a>
 
 </div>
 
@@ -68,17 +69,7 @@
     <?php if ($page > 1): ?>
         <a href="?page=<?= $page - 1 ?>">&#8249; Précédent</a>
     <?php endif; ?>
-
-    <?php /* for ($i = 1; $i <= $pages; $i++): ?>
-        <?php if ($i === $page): ?>
-            <strong><?= $i ?></strong>
-        <?php else: ?>
-            <a href="?page=<?= $i ?>"><?= $i ?></a>
-        <?php endif; ?>
-    <?php endfor; */ ?>
     <?= $page ?>/<?= $pages?> 
-
-    
 
     <?php if ($page < $pages): ?>
         <a href="?page=<?= $page + 1 ?>">Suivant &#8250;</a>

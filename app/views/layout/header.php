@@ -11,11 +11,11 @@
 <title><?= $title ?? "StageHub" ?></title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="../../../public/css/style.css">
-<link rel="stylesheet" href="../../../public/css/inscription.css">
-<link rel="stylesheet" href="../../../public/css/offres.css">
-<link rel="stylesheet" href="../../../public/css/profil.css">
-<link rel="stylesheet" href="../../../public/css/ajout_offres.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/style.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/inscription.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/offres.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/profil.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/ajout_offres.css">
 <?php if (!empty($extra_css)) echo $extra_css; ?>
 
 </head>
