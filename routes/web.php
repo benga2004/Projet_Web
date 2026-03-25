@@ -24,8 +24,10 @@ $url = trim($_GET['url'] ?? '', '/');
 
 switch ($url) {
     case '':
-    case 'offres':
         (new OfferController())->index();
+        break;
+    case 'offres':
+        (new OfferController())->offres();
         break;
     case 'offres/detail':
         (new OfferController())->detail();

@@ -1,5 +1,4 @@
-<?php $title = "Offres de stage"; ?>
-<?php require __DIR__ . '/../layout/header.php'; ?>
+
 
 
 <!--
@@ -42,15 +41,13 @@
 <?= $total ?> offres disponibles
 </p>
 
-
-
 <?php foreach ($offresPage as $offre): ?>
 
 <div class="offer-card">
 
 <h2><?= htmlspecialchars($offre['titre']) ?></h2>
 
-<p class="company"><?= htmlspecialchars($offre['entreprise']) ?></p>
+<p class="company"><?= htmlspecialchars($companyModel->getById($offre['entreprise_id'])['nom']) ?></p>
 
 <p>Ville : <?= htmlspecialchars($offre['ville']) ?></p>
 

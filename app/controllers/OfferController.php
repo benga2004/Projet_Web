@@ -20,7 +20,22 @@ class OfferController {
     private int $parPage = 5;
 
     public function index(): void {
+        $tilte = "Accueil - StageHub";
+        $content = "Bienvenue sur StageHub, votre plateforme de référence pour trouver les meilleures offres de stage en entreprise. Explorez notre large sélection d'opportunités de stage, postulez facilement et lancez votre carrière dès aujourd'hui !";
+        require BASE_PATH . '/app/views/layout/header.php';
+        require BASE_PATH . '/app/views/Accueil.php';
+        require BASE_PATH . '/app/views/offers/list.php';
+        require BASE_PATH . '/app/views/layout/footer.php';
+    }
+
+
+    public function offres(): void {
+        $title = "Offres de stage";
+        $content = "Découvrez les dernières offres de stage disponibles sur StageHub. Que vous soyez à la recherche d'un stage en informatique, marketing, industrie, design ou finance, notre plateforme vous propose une variété d'opportunités pour lancer votre carrière. Postulez dès maintenant et trouvez le stage qui correspond à vos aspirations professionnelles !";
+        require BASE_PATH . '/app/views/layout/header.php';
+
         $model   = new Offer();
+        $companyModel = new Company();
         $page    = max(1, (int)($_GET['page'] ?? 1));
         $query   = trim($_GET['query'] ?? '');
         $ville   = trim($_GET['ville'] ?? '');
@@ -32,11 +47,14 @@ class OfferController {
         $pages      = (int)ceil($total / $this->parPage);
 
         require BASE_PATH . '/app/views/offers/list.php';
+        require BASE_PATH . '/app/views/layout/footer.php';
     }
+
 
     public function detail(): void {
         $id    = (int)($_GET['id'] ?? 0);
         $offre = (new Offer())->getById($id);
+        $company = (new Company())->getById($offre['entreprise_id']);
         if (!$offre) { http_response_code(404); require BASE_PATH . '/app/views/errors/404.php'; return; }
         require BASE_PATH . '/app/views/offers/detail.php';
     }
