@@ -20,16 +20,32 @@ class OfferController {
     private int $parPage = 5;
 
     public function index(): void {
+
         $tilte = "Accueil - StageHub";
         $content = "Bienvenue sur StageHub, votre plateforme de référence pour trouver les meilleures offres de stage en entreprise. Explorez notre large sélection d'opportunités de stage, postulez facilement et lancez votre carrière dès aujourd'hui !";
+
         require BASE_PATH . '/app/views/layout/header.php';
         require BASE_PATH . '/app/views/Accueil.php';
+
+        $model   = new Offer();
+        $companyModel = new Company();
+
+        $page    = max(1, (int)($_GET['page'] ?? 1));
+        $query   = trim($_GET['query'] ?? '');
+        $ville   = trim($_GET['ville'] ?? '');
+        $domaine = trim($_GET['domaine'] ?? '');
+        $offset  = ($page - 1) * $this->parPage;
+        $offresPage = $model->search($query, $ville, $domaine, $this->parPage, $offset);
+        $total      = $model->count();
+        $pages      = (int)ceil($total / $this->parPage);
+
         require BASE_PATH . '/app/views/offers/list.php';
         require BASE_PATH . '/app/views/layout/footer.php';
     }
 
 
     public function offres(): void {
+
         $title = "Offres de stage";
         $content = "Découvrez les dernières offres de stage disponibles sur StageHub. Que vous soyez à la recherche d'un stage en informatique, marketing, industrie, design ou finance, notre plateforme vous propose une variété d'opportunités pour lancer votre carrière. Postulez dès maintenant et trouvez le stage qui correspond à vos aspirations professionnelles !";
         require BASE_PATH . '/app/views/layout/header.php';
@@ -48,6 +64,7 @@ class OfferController {
 
         require BASE_PATH . '/app/views/offers/list.php';
         require BASE_PATH . '/app/views/layout/footer.php';
+
     }
 
 

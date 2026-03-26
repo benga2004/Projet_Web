@@ -25,6 +25,9 @@ class AuthController {
     }
 
     public function register(): void {
+        $title = "Inscription - StageHub";
+        include BASE_PATH . '/app/views/layout/header.php';
+
         $erreur = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // validation + création
@@ -33,5 +36,6 @@ class AuthController {
             exit;
         }
         require BASE_PATH . '/app/views/auth/inscription.php';
+        include BASE_PATH . '/app/views/layout/footer.php';
     }
 }

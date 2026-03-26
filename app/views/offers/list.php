@@ -1,8 +1,5 @@
-
-
-
-<!--
 <h1>Offres de stage</h1>
+
 <section id="search-bar" aria-label="Rechercher une offre">
     <form action="" method="get" class="search-form" autocomplete="off">
         <div class="field">
@@ -30,15 +27,19 @@
                 <option value="industrie">Industrie</option>
                 <option value="design">Design</option>
                 <option value="finance">Finance</option>
+
             </select>
         </div>
-
+        
         <button type="submit" class="search-button">Rechercher</button>
     </form>
-</section> -->
+
+</section>
 
 <p class="info">
+
 <?= $total ?> offres disponibles
+
 </p>
 
 <?php foreach ($offresPage as $offre): ?>
@@ -50,9 +51,7 @@
 <p class="company"><?= htmlspecialchars($companyModel->getById($offre['entreprise_id'])['nom']) ?></p>
 
 <p>Ville : <?= htmlspecialchars($offre['ville']) ?></p>
-
 <p>Durée : <?= htmlspecialchars($offre['duree']) ?></p>
-
 <p>Domaine : <?= htmlspecialchars($offre['domaine']) ?></p>
 
 <a href="<?= BASE_URL ?>offres/detail?id=<?= $offre['id'] ?>">Détails</a>
@@ -71,6 +70,5 @@
     <?php if ($page < $pages): ?>
         <a href="?page=<?= $page + 1 ?>">Suivant &#8250;</a>
     <?php endif; ?>
-</div>
 
-<?php require __DIR__ . '/../layout/footer.php'; ?>
+</div>

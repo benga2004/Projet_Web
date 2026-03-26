@@ -1,6 +1,3 @@
-<?php $title = "Inscription - StageHub"; ?>
-<?php include 'layout/header.php'; ?>
-
 <h1>Inscription</h1>
 
 <form action="#" method="POST">
@@ -45,5 +42,3 @@
         <a href="connexion.php">Connectez-vous</a>
     </div>
 </form>
-
-<?php include 'layout/footer.php'; ?>
