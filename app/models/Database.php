@@ -5,8 +5,8 @@ class Database {
     // ← Modifie ces 4 constantes selon ton environnement
     private const HOST    = 'localhost';
     private const DBNAME  = 'stage_db';
-    private const USER    = 'root';
-    private const PASS    = 'JeanDona@04';          // vide sur XAMPP/WAMP par défaut
+    private const USER    = 'etudiant';
+    private const PASS    = 'Password123_fuck';          // vide sur XAMPP/WAMP par défaut
 
     public static function connect(): PDO {
         if (self::$instance === null) {
