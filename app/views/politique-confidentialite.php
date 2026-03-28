@@ -1,0 +1,83 @@
+<?php
+$title   = "Politique de confidentialité - StageHub";
+$content = "Politique de confidentialité et protection des données personnelles de StageHub";
+require __DIR__ . '/layout/header.php';
+?>
+
+<div class="legal-page">
+
+    <div class="legal-hero">
+        <div class="legal-hero-icon"><i class="fas fa-user-shield" aria-hidden="true"></i></div>
+        <h1>Politique de confidentialité</h1>
+        <p>Vos données personnelles nous tiennent à cœur. Voici comment nous les collectons, les utilisons et les protégeons.</p>
+    </div>
+
+    <div class="legal-body">
+
+        <section class="legal-section">
+            <h2><i class="fas fa-database"></i> Données collectées</h2>
+            <p>Lors de votre utilisation de StageHub, nous collectons les données suivantes :</p>
+            <ul class="legal-list">
+                <li><strong>Création de compte :</strong> nom, prénom, adresse email, mot de passe (hashé), rôle (étudiant / pilote).</li>
+                <li><strong>Candidature :</strong> nom, prénom, email, lettre de motivation, fichier CV (PDF).</li>
+                <li><strong>Navigation :</strong> adresse IP, navigateur, pages visitées (données de session uniquement, non transmises à des tiers).</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-bullseye"></i> Finalités du traitement</h2>
+            <p>Les données collectées sont utilisées exclusivement pour :</p>
+            <ul class="legal-list">
+                <li>Créer et gérer votre compte utilisateur.</li>
+                <li>Traiter et transmettre vos candidatures aux entreprises partenaires.</li>
+                <li>Vous envoyer des notifications relatives à vos candidatures.</li>
+                <li>Améliorer les fonctionnalités de la plateforme.</li>
+            </ul>
+            <p>Elles ne sont <strong>jamais vendues ni cédées</strong> à des tiers à des fins commerciales.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-clock"></i> Durée de conservation</h2>
+            <ul class="legal-list">
+                <li><strong>Compte utilisateur :</strong> conservé tant que le compte est actif, puis supprimé dans un délai de 3 ans après la dernière connexion.</li>
+                <li><strong>CV et candidatures :</strong> conservés 2 ans après le dépôt.</li>
+                <li><strong>Données de connexion :</strong> conservées 12 mois.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-lock"></i> Sécurité</h2>
+            <p>Nous mettons en œuvre les mesures techniques et organisationnelles suivantes pour protéger vos données :</p>
+            <ul class="legal-list">
+                <li>Mots de passe hashés avec bcrypt (jamais stockés en clair).</li>
+                <li>Communications chiffrées via HTTPS/TLS.</li>
+                <li>Accès aux données restreint au personnel autorisé.</li>
+                <li>CV stockés dans un répertoire privé, non accessible publiquement.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-hand-paper"></i> Vos droits (RGPD)</h2>
+            <p>Conformément au RGPD (Règlement UE 2016/679), vous disposez des droits suivants :</p>
+            <ul class="legal-list">
+                <li><strong>Droit d'accès</strong> : obtenir une copie de vos données.</li>
+                <li><strong>Droit de rectification</strong> : corriger des données inexactes.</li>
+                <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données.</li>
+                <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré.</li>
+                <li><strong>Droit d'opposition</strong> : vous opposer à certains traitements.</li>
+            </ul>
+            <p>Pour exercer ces droits : <a href="mailto:privacy@stagehub.fr">privacy@stagehub.fr</a> ou via notre <a href="<?= BASE_URL ?>contact">formulaire de contact</a>. Réponse sous 30 jours.</p>
+            <p>Vous pouvez également introduire une réclamation auprès de la <strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-cookie"></i> Cookies</h2>
+            <p>Nous utilisons uniquement des cookies techniques indispensables au fonctionnement du site (identifiant de session PHP). Aucun cookie publicitaire ou de profilage n'est utilisé.</p>
+        </section>
+
+        <p class="legal-update">Dernière mise à jour : 28 mars 2026</p>
+
+    </div>
+</div>
+
+<?php require __DIR__ . '/layout/footer.php'; ?>

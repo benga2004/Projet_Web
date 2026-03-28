@@ -9,7 +9,19 @@ class User {
     public function findByEmail(string $email): array {
         $stmt = $this->db->prepare('SELECT * FROM users WHERE email = :email');
         $stmt->execute([':email' => $email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
+    }
+
+    public function findById(int $id): array {
+        $stmt = $this->db->prepare('SELECT * FROM users WHERE id = :id LIMIT 1');
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
+    }
+
+    public function emailExists(string $email): bool {
+        $stmt = $this->db->prepare('SELECT 1 FROM users WHERE email = :email LIMIT 1');
+        $stmt->execute([':email' => $email]);
+        return (bool) $stmt->fetchColumn();
     }
 
     public function create(array $data): bool {
@@ -33,5 +45,23 @@ class User {
     public function delete(int $id): bool {
         $stmt = $this->db->prepare('DELETE FROM users WHERE id = :id');
         return $stmt->execute([':id' => $id]);
+    }
+
+    public function update(int $id, array $data): bool {
+        $fields = ['nom = :nom', 'prenom = :prenom', 'email = :email'];
+        $params = [':nom' => $data['nom'], ':prenom' => $data['prenom'], ':email' => $data['email'], ':id' => $id];
+
+        if (!empty($data['password'])) {
+            $fields[] = 'password = :password';
+            $params[':password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+        }
+
+        $stmt = $this->db->prepare('UPDATE users SET ' . implode(', ', $fields) . ' WHERE id = :id');
+        return $stmt->execute($params);
+    }
+
+    public function updateCv(int $id, string $cvPath): bool {
+        $stmt = $this->db->prepare('UPDATE users SET cv_path = :cv WHERE id = :id');
+        return $stmt->execute([':cv' => $cvPath, ':id' => $id]);
     }
 }

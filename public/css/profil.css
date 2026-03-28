@@ -1,156 +1,393 @@
-/* ── Profile Banner ───────────────────────────── */
-.profile-banner {
+/* =====================================================
+   DASHBOARD PROFIL ÉTUDIANT
+   ===================================================== */
+
+/* Layout 2 colonnes */
+.dash-wrap {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 28px;
+    max-width: 1200px;
+    margin: 40px auto 64px;
+    padding: 0 24px;
+    align-items: start;
+}
+
+/* ── Sidebar ── */
+.dash-sidebar {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 90px;
+    text-align: center;
+}
+
+.dash-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    box-shadow: 0 4px 16px rgba(102,126,234,0.35);
+}
+
+.dash-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 0 0 6px;
+}
+
+.dash-role {
+    font-size: 0.8rem;
+    color: #667eea;
+    font-weight: 600;
+    background: #eef2ff;
+    border-radius: 20px;
+    padding: 3px 12px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.dash-email {
+    font-size: 0.78rem;
+    color: #a0aec0;
+    margin-bottom: 24px;
+    word-break: break-all;
+}
+
+/* Nav onglets sidebar */
+.dash-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.dash-nav-link {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 16px;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    padding: 11px 14px;
     border-radius: 12px;
-    margin-bottom: 16px;
+    color: #4a5568;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s, color .2s;
 }
 
-.profile-banner h2 {
+.dash-nav-link i {
+    width: 18px;
+    text-align: center;
+    color: #a0aec0;
+    transition: color .2s;
+}
+
+.dash-nav-link:hover { background: #f7f7ff; color: #667eea; }
+.dash-nav-link:hover i, .dash-nav-link.active i { color: #667eea; }
+
+.dash-nav-link.active {
+    background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+    color: #667eea;
+    box-shadow: inset 3px 0 0 #667eea;
+}
+
+.dash-badge {
+    margin-left: auto;
+    background: #667eea;
     color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 2px 8px;
+    min-width: 22px;
+    text-align: center;
+}
+
+.dash-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: #e53e3e;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid #fed7d7;
+    transition: background .2s;
+}
+
+.dash-logout:hover { background: #fff5f5; }
+
+/* ── Main ── */
+.dash-main { min-width: 0; }
+
+/* Stats */
+.dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.dash-stat-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.dash-stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.2rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.bg-blue   { background: linear-gradient(135deg,#667eea,#764ba2); }
+.bg-green  { background: linear-gradient(135deg,#48bb78,#38a169); }
+.bg-purple { background: linear-gradient(135deg,#9f7aea,#6b46c1); }
+
+.dash-stat-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a202c;
+    line-height: 1;
+    margin: 0 0 3px;
+}
+
+.dash-stat-label {
+    font-size: 0.78rem;
+    color: #718096;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .4px;
     margin: 0;
 }
 
-.role-badge {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    font-size: 0.75rem;
-    padding: 3px 10px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-}
+/* Onglets */
+.dash-tab { display: none; }
+.dash-tab.active { display: block; }
 
-/* ── Cards ────────────────────────────────────── */
-.card {
+/* Cards contenu */
+.dash-card {
     background: #fff;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    margin-bottom: 20px;
 }
 
-.card-title {
+.dash-card-title {
+    font-size: 1rem;
     font-weight: 700;
-    font-size: 0.95rem;
-    color: #1e1b4b;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ede9fe;
+    color: #2d3748;
+    margin: 0 0 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* ── Info rows ────────────────────────────────── */
+.dash-card-title i { color: #667eea; }
+
+/* Info rows */
 .info-row {
     display: flex;
-    flex-direction: column;
-    padding: 8px 0;
-    border-bottom: 1px solid #f3f4f6;
-    font-size: 0.875rem;
-    color: #374151;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 0;
+    border-bottom: 1px solid #f7f7f7;
+    font-size: 0.9rem;
+    color: #2d3748;
 }
 
-.info-row:last-child {
-    border-bottom: none;
-}
+.info-row:last-child { border-bottom: none; }
 
 .label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #6b7280;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #a0aec0;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 2px;
+    letter-spacing: .5px;
 }
 
-/* ── Skills ───────────────────────────────────── */
-.skills-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+/* Table candidatures */
+.dash-table-wrap { overflow-x: auto; }
+
+.dash-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
 }
 
-.skill-tag {
-    background: #ede9fe;
-    color: #4f46e5;
+.dash-table th {
+    text-align: left;
+    padding: 10px 14px;
+    background: #f7f8ff;
+    color: #667eea;
+    font-weight: 700;
     font-size: 0.78rem;
-    font-weight: 600;
-    padding: 4px 12px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    border-bottom: 2px solid #e8eaf6;
+}
+
+.dash-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #4a5568;
+    vertical-align: middle;
+}
+
+.dash-table tr:last-child td { border-bottom: none; }
+.dash-table tr:hover td { background: #fafbff; }
+
+/* Badges statut */
+.dash-badge-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 12px;
     border-radius: 20px;
+    display: inline-block;
 }
 
-/* ── Buttons ──────────────────────────────────── */
-.btn-edit {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: #4f46e5;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
+.badge-orange { background:#fffbeb; color:#d97706; border:1px solid #fde68a; }
+.badge-green  { background:#f0fff4; color:#276749; border:1px solid #9ae6b4; }
+.badge-red    { background:#fff5f5; color:#c53030; border:1px solid #feb2b2; }
+
+/* Grille wishlist */
+.dash-wl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    gap: 16px;
+}
+
+.dash-wl-card {
+    background: #f7f8ff;
+    border-radius: 14px;
+    padding: 18px;
+    border: 1.5px solid #e8eaf6;
+    font-size: 0.88rem;
+    color: #4a5568;
+    transition: box-shadow .2s;
+}
+
+.dash-wl-card:hover { box-shadow: 0 4px 16px rgba(102,126,234,0.12); }
+
+.dash-wl-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
     margin-bottom: 10px;
-    text-align: center;
 }
 
-.btn-logout {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    color: #ef4444;
-    border: 1px solid #ef4444;
-    border-radius: 10px;
+.dash-wl-header strong {
     font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
+    color: #2d3748;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.dash-wl-card p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.dash-wl-card p i { color: #667eea; width: 14px; }
+
+.dash-wl-card .btn-sm { margin-top: 14px; }
+
+/* Vide */
+.dash-empty {
     text-align: center;
-    text-decoration: none;
+    padding: 48px 20px;
+    color: #a0aec0;
 }
 
-/* ============================================
-   RESPONSIVE - TABLET & DESKTOP
-   ============================================ */
-
-@media (min-width: 768px) {
-    .profile-banner {
-        padding: 20px;
-    }
-
-    .profile-banner h2 {
-        font-size: 1.5rem;
-    }
-
-    .card {
-        padding: 20px;
-    }
-
-    .info-row {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .label {
-        margin-bottom: 0;
-        flex-shrink: 0;
-    }
-
-    .btn-edit,
-    .btn-logout {
-        width: auto;
-        max-width: 200px;
-        margin: 0 auto 10px;
-    }
+.dash-empty i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 14px;
+    color: #e2e8f0;
 }
 
-@media (min-width: 1024px) {
-    .card {
-        max-width: 800px;
-        margin: 0 auto 20px;
-    }
+.dash-empty p { margin-bottom: 20px; font-size: 0.95rem; }
+
+.btn.btn-sm, a.btn.btn-sm { font-size: 0.82rem; padding: 7px 16px; }
+
+/* ── Formulaire d'édition ── */
+.dash-edit-form .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+.dash-edit-form label { font-size: 0.82rem; font-weight: 600; color: #718096; text-transform: uppercase; letter-spacing: .04em; }
+.dash-edit-form input[type="text"],
+.dash-edit-form input[type="email"],
+.dash-edit-form input[type="password"] {
+    padding: 10px 14px;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 0.95rem;
+    transition: border-color .2s;
+}
+.dash-edit-form input:focus { outline: none; border-color: var(--primary, #8b5cf6); }
+.dash-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.dash-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 20px 0; }
+.dash-hint { font-size: 0.83rem; color: #718096; margin-bottom: 16px; }
+
+/* ── CV actuel ── */
+.dash-cv-current {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: 8px;
+    background: rgba(56,161,105,0.1); border: 1px solid rgba(56,161,105,0.3);
+    margin-bottom: 14px; font-size: 0.9rem;
+}
+.dash-cv-link {
+    color: var(--primary, #8b5cf6); font-weight: 600; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px;
+}
+.dash-cv-link:hover { text-decoration: underline; }
+
+/* ── Alertes profil ── */
+.dash-alert { display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+    border-radius: 10px; font-size: 0.9rem; font-weight: 500; margin-bottom: 20px; }
+.dash-alert--success { background: rgba(56,161,105,0.15); border: 1px solid rgba(56,161,105,0.4); color: #68d391; }
+.dash-alert--error   { background: rgba(229,62,62,0.12);  border: 1px solid rgba(229,62,62,0.4);  color: #fc8181; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .dash-wrap { grid-template-columns: 1fr; }
+    .dash-sidebar { position: static; text-align: center; }
+    .dash-stats { grid-template-columns: repeat(3,1fr); }
+}
+
+@media (max-width: 600px) {
+    .dash-wrap { margin: 20px auto 40px; padding: 0 14px; }
+    .dash-stats { grid-template-columns: 1fr; }
+    .dash-card { padding: 20px 16px; }
+    .dash-form-row { grid-template-columns: 1fr; }
 }
