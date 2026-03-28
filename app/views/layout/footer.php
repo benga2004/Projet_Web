@@ -40,6 +40,7 @@
     </div>
 </footer>
 
+<script>window.BASE_URL = '<?= BASE_URL ?>';</script>
 <script src="<?= BASE_URL ?>js/script.js"></script>
 <script src="<?= BASE_URL ?>js/sidebar.js"></script>
 

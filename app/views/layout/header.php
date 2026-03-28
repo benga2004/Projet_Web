@@ -10,15 +10,14 @@
 <title><?= $title ?? "StageHub" ?></title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/style.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/inscription.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/offres.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/profil.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/ajout_offres.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/dashboard-pilote.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/admin.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/sidebar.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/bg-animations.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/style.css?v=2">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/inscription.css?v=2">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/offres.css?v=2">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/profil.css?v=2">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/ajout_offres.css?v=2">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/sidebar.css?v=2">
+<link rel="stylesheet" href="<?= BASE_URL ?>css/bg-animations.css?v=2">
 
 <?php if (!empty($extra_css)) echo $extra_css; ?>
 
@@ -72,7 +71,19 @@
             <li><a href="<?= BASE_URL ?>">Accueil</a></li>
             <li><a href="<?= BASE_URL ?>offres">Offres</a></li>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <li><a href="<?= BASE_URL ?>profil/etudiant">Mon Profil</a></li>
+                <?php $role = $_SESSION['user_role'] ?? 'etudiant'; ?>
+                <?php if ($role === 'admin'): ?>
+                    <li><a href="<?= BASE_URL ?>admin"><i class="fas fa-shield-alt"></i> Administration</a></li>
+                <?php elseif ($role === 'pilote'): ?>
+                    <li><a href="<?= BASE_URL ?>dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="<?= BASE_URL ?>offres/ajouter"><i class="fas fa-plus-circle"></i> Ajouter une offre</a></li>
+                <?php else: ?>
+                    <li><a href="<?= BASE_URL ?>profil/etudiant"><i class="fas fa-user"></i> Mon Profil</a></li>
+                    <li><a href="<?= BASE_URL ?>wishlist"><i class="fas fa-bookmark"></i> Wishlist</a></li>
+                <?php endif; ?>
+                <li>
+                    <span class="nav-username">👋 <?= $_SESSION['user_prenom'] ?? '' ?></span>
+                </li>
                 <li><a href="<?= BASE_URL ?>deconnexion" class="btn-nav-logout">Déconnexion</a></li>
             <?php else: ?>
                 <li><a href="<?= BASE_URL ?>inscription">Inscription</a></li>
@@ -87,14 +98,23 @@
 <nav class="sidebar" id="mobile-menu">
     <button class="sidebar-close" id="sidebar-close">✕</button>
     <div class="sidebar-items">
-        <a href="<?= BASE_URL ?>">🏠 Accueil</a>
-        <a href="<?= BASE_URL ?>offres">📋 Offres</a>
+        <a href="<?= BASE_URL ?>"><i class="bi bi-house-door-fill"></i> Accueil</a>
+        <a href="<?= BASE_URL ?>offres"><i class="bi bi-briefcase-fill"></i> Offres</a>
         <?php if (isset($_SESSION['user_id'])): ?>
-            <a href="<?= BASE_URL ?>profil/etudiant">👤 Mon Profil</a>
-            <a href="<?= BASE_URL ?>deconnexion" class="logout-btn">🚪 Déconnexion</a>
+            <?php $role = $_SESSION['user_role'] ?? 'etudiant'; ?>
+            <?php if ($role === 'admin'): ?>
+                <a href="<?= BASE_URL ?>admin"><i class="bi bi-shield-fill"></i> Administration</a>
+            <?php elseif ($role === 'pilote'): ?>
+                <a href="<?= BASE_URL ?>dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                <a href="<?= BASE_URL ?>offres/ajouter"><i class="bi bi-plus-circle-fill"></i> Ajouter une offre</a>
+            <?php else: ?>
+                <a href="<?= BASE_URL ?>profil/etudiant"><i class="bi bi-person-fill"></i> Mon Profil</a>
+                <a href="<?= BASE_URL ?>wishlist"><i class="bi bi-bookmark-fill"></i> Wishlist</a>
+            <?php endif; ?>
+            <a href="<?= BASE_URL ?>deconnexion" class="logout-btn"><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
         <?php else: ?>
-            <a href="<?= BASE_URL ?>inscription">📝 Inscription</a>
-            <a href="<?= BASE_URL ?>connexion">🔐 Connexion</a>
+            <a href="<?= BASE_URL ?>inscription"><i class="bi bi-person-plus-fill"></i> Inscription</a>
+            <a href="<?= BASE_URL ?>connexion"><i class="bi bi-lock-fill"></i> Connexion</a>
         <?php endif; ?>
     </div>
 </nav>

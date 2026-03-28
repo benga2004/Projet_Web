@@ -50,6 +50,9 @@ switch ($url) {
     case 'profil/entreprise':
         (new EntrepriseController())->profil();
         break;
+    case 'dashboard':
+        (new PiloteController())->dashboard();
+        break;
     case 'admin':
         (new AdminController())->index();
         break;
@@ -82,6 +85,24 @@ switch ($url) {
         break;
     case 'offres/ajouter/store':
         (new OfferController())->store();
+        break;
+    case 'wishlist':
+        (new WishlistController())->index();
+        break;
+    case 'wishlist/toggle':
+        (new WishlistController())->toggle();
+        break;
+    case 'mentions-legales':
+        require BASE_PATH . '/app/views/mentions-legales.php';
+        break;
+    case 'politique-confidentialite':
+        require BASE_PATH . '/app/views/politique-confidentialite.php';
+        break;
+    case 'conditions-generales':
+        require BASE_PATH . '/app/views/conditions-generales.php';
+        break;
+    case 'contact':
+        require BASE_PATH . '/app/views/contact.php';
         break;
     default:
         require '../app/views/errors/404.php';

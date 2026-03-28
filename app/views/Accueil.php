@@ -7,7 +7,9 @@
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="<?= BASE_URL ?>offres">Voir les offres</a>
+      <?php if (!isset($_SESSION['user_id'])): ?>
       <a class="btn btn-secondary" href="<?= BASE_URL ?>inscription">Créer un compte</a>
+      <?php endif; ?>
     </div>
   </div>
 </section>
@@ -52,7 +54,13 @@
 </section>
 
 <section class="home-cta">
-  <h2>Prêt à lancer votre carrière ?</h2>
-  <p>Inscrivez-vous, complétez votre profil et trouvez le stage qui vous fera grandir.</p>
-  <a class="btn btn-primary" href="<?= BASE_URL ?>inscription">Inscription étudiant</a>
+  <?php if (isset($_SESSION['user_id'])): ?>
+    <h2>Bonne recherche, <?= htmlspecialchars($_SESSION['user_prenom'] ?? '', ENT_QUOTES, 'UTF-8') ?> !</h2>
+    <p>Explorez les offres disponibles et postulez directement depuis votre espace.</p>
+    <a class="btn btn-primary" href="<?= BASE_URL ?>offres">Voir les offres</a>
+  <?php else: ?>
+    <h2>Prêt à lancer votre carrière ?</h2>
+    <p>Inscrivez-vous, complétez votre profil et trouvez le stage qui vous fera grandir.</p>
+    <a class="btn btn-primary" href="<?= BASE_URL ?>inscription">Inscription étudiant</a>
+  <?php endif; ?>
 </section>

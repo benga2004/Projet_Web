@@ -47,7 +47,18 @@
 
 <div class="offer-card">
 
+<div class="offer-card-header">
 <h2><?= htmlspecialchars($offre['titre']) ?></h2>
+<?php if (isset($_SESSION['user_id'])): ?>
+<?php $inWL = in_array($offre['id'], $wishlistIds ?? []); ?>
+<button class="wishlist-btn <?= $inWL ? 'active' : '' ?>"
+        type="button"
+        data-offre="<?= $offre['id'] ?>"
+        title="<?= $inWL ? 'Retirer de la wishlist' : 'Ajouter \u00e0 la wishlist' ?>">
+    <i class="<?= $inWL ? 'fas' : 'far' ?> fa-bookmark"></i>
+</button>
+<?php endif; ?>
+</div>
 
 <p class="company"><?= htmlspecialchars($companyModel->getById($offre['entreprise_id'])['nom']) ?></p>
 

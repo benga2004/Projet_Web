@@ -1,53 +1,11 @@
-<?php $title = "Dashboard Pilote - StageHub"; ?>
-<?php include __DIR__ . '/../layout/header.php'; ?>
-
-<link rel="stylesheet" href="/public/css/style.css">
-<link rel="stylesheet" href="/public/css/dashboard-pilote.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
 <?php
-// ============================================
-// DONNÉES DU PILOTE (à remplacer par BDD)
-// ============================================
-
-$pilote = [
-    'nom'   => 'Jeremy Gallet',
-    'promo' => 'A2 INFO',
-];
-
-$stats = [
-    ['icon' => '<i class="bi bi-mortarboard-fill"></i>', 'val' => 24, 'lbl' => 'Étudiants',   'delta' => 'Promo ' . $pilote['promo'], 'color' => 'var(--primary)', 'cls' => 'c1'],
-    ['icon' => '<i class="bi bi-check-circle-fill"></i>', 'val' => 4,  'lbl' => 'Stages',       'delta' => '1 ce mois',                 'color' => '#40c057',        'cls' => 'c2'],
-    ['icon' => '<i class="bi bi-envelope-fill"></i>',     'val' => 38, 'lbl' => 'Candidatures', 'delta' => '5 cette semaine',           'color' => '#fd7e14',        'cls' => 'c3'],
-    ['icon' => '<i class="bi bi-exclamation-triangle-fill"></i>', 'val' => 4, 'lbl' => 'Sans cand.', 'delta' => 'À relancer',           'color' => '#fa5252',        'cls' => 'c4'],
-];
-
-$etudiants = [
-    ['initiale' => 'A', 'nom' => 'Alice Martin', 'cand' => 3, 'badge' => 'badge-orange', 'statut' => 'En recherche'],
-    ['initiale' => 'B', 'nom' => 'Bob Leroy',    'cand' => 1, 'badge' => 'badge-green',  'statut' => 'Stage trouvé'],
-    ['initiale' => 'C', 'nom' => 'Clara Petit',  'cand' => 2, 'badge' => 'badge-orange', 'statut' => 'En recherche'],
-    ['initiale' => 'D', 'nom' => 'David Simon',  'cand' => 0, 'badge' => 'badge-red',    'statut' => 'Sans candidature'],
-];
-
-$barres = [
-    ['lbl' => 'Stages trouvés',   'val' => '4/24',  'pct' => 17, 'color' => '#38a169'],
-    ['lbl' => 'En recherche',     'val' => '16/24', 'pct' => 67, 'color' => 'var(--primary)'],
-    ['lbl' => 'Sans candidature', 'val' => '4/24',  'pct' => 16, 'color' => '#e53e3e'],
-];
-
-$candidatures = [
-    ['initiale' => 'A', 'nom' => 'Alice Martin', 'poste' => 'Dev PHP', 'entreprise' => 'Capgemini', 'date' => '2025-03-01', 'badge' => 'badge-orange', 'statut' => 'En attente'],
-    ['initiale' => 'B', 'nom' => 'Bob Leroy',    'poste' => 'DevOps',  'entreprise' => 'Airbus',    'date' => '2025-02-15', 'badge' => 'badge-green',  'statut' => 'Acceptée'],
-    ['initiale' => 'C', 'nom' => 'Clara Petit',  'poste' => 'Data',    'entreprise' => 'Thales',    'date' => '2025-03-10', 'badge' => 'badge-orange', 'statut' => 'En attente'],
-];
-
-$activites = [
-    ['dot' => '#38a169', 'icon' => 'bi-check-circle-fill',      'txt' => 'Bob a trouvé son stage – Airbus',  'time' => 'il y a 1h'],
-    ['dot' => '#6b5bcd', 'icon' => 'bi-envelope-fill',           'txt' => 'Alice a postulé chez Capgemini',   'time' => 'il y a 3h'],
-    ['dot' => '#d97706', 'icon' => 'bi-exclamation-triangle-fill','txt' => "David n'a aucune candidature",     'time' => 'il y a 5h'],
-    ['dot' => '#7a7a9d', 'icon' => 'bi-building',                 'txt' => 'Nouvelle offre – Thales Lyon',     'time' => 'il y a 1j'],
-];
+$title     = "Dashboard Pilote - StageHub";
+$extra_css = '<link rel="stylesheet" href="' . BASE_URL . 'css/dashboard-pilote.css?v=2">' . "\n"
+           . '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">';
+include __DIR__ . '/../layout/header.php';
 ?>
+
+<?php /* données injectées par PiloteController */ ?>
 
 <h1>Dashboard Pilote</h1>
 
@@ -56,7 +14,7 @@ $activites = [
     <div style="font-size:11px; color:#40c057; font-weight:700; margin-bottom:6px;">
         <i class="bi bi-circle-fill" style="font-size:8px;"></i> Session active
     </div>
-    <p class="hero-sub">Pilote · Promotion <?= htmlspecialchars($pilote['promo']) ?></p>
+    <p class="hero-sub">Pilote · <?= htmlspecialchars($pilote['prenom'] . ' ' . $pilote['nom'], ENT_QUOTES, 'UTF-8') ?></p>
     <span class="hero-badge">PILOTE DE PROMOTION</span>
 </div>
 

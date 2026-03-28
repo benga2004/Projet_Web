@@ -1,0 +1,69 @@
+<?php
+$title   = "Mentions légales - StageHub";
+$content = "Mentions légales de la plateforme StageHub";
+require __DIR__ . '/layout/header.php';
+?>
+
+<div class="legal-page">
+
+    <div class="legal-hero">
+        <div class="legal-hero-icon"><i class="fas fa-balance-scale" aria-hidden="true"></i></div>
+        <h1>Mentions légales</h1>
+        <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique.</p>
+    </div>
+
+    <div class="legal-body">
+
+        <section class="legal-section">
+            <h2><i class="fas fa-building"></i> Éditeur du site</h2>
+            <p>Le site <strong>StageHub.fr</strong> est édité par :</p>
+            <ul class="legal-list">
+                <li><strong>Raison sociale :</strong> StageHub SAS</li>
+                <li><strong>Siège social :</strong> 12 rue de la Innovation, 75008 Paris, France</li>
+                <li><strong>SIRET :</strong> 123 456 789 00042</li>
+                <li><strong>Capital social :</strong> 10 000 €</li>
+                <li><strong>Directeur de la publication :</strong> Bangaly Kaba</li>
+                <li><strong>Email :</strong> <a href="mailto:contact@stagehub.fr">contact@stagehub.fr</a></li>
+                <li><strong>Téléphone :</strong> 01 23 45 67 89</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-server"></i> Hébergement</h2>
+            <p>Le site est hébergé par :</p>
+            <ul class="legal-list">
+                <li><strong>Société :</strong> OVHcloud</li>
+                <li><strong>Adresse :</strong> 2 rue Kellermann, 59100 Roubaix, France</li>
+                <li><strong>Site web :</strong> www.ovhcloud.com</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-copyright"></i> Propriété intellectuelle</h2>
+            <p>L'ensemble des contenus présents sur le site StageHub.fr (textes, images, graphismes, logo, icônes, sons, logiciels…) est la propriété exclusive de StageHub SAS, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.</p>
+            <p>Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans l'accord exprès par écrit de StageHub SAS.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-shield-alt"></i> Données personnelles</h2>
+            <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de portabilité et d'effacement de vos données personnelles.</p>
+            <p>Pour exercer ces droits, contactez-nous à <a href="mailto:privacy@stagehub.fr">privacy@stagehub.fr</a>.</p>
+            <p>Pour plus d'informations, consultez notre <a href="<?= BASE_URL ?>politique-confidentialite">Politique de confidentialité</a>.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-cookie-bite"></i> Cookies</h2>
+            <p>Le site StageHub.fr utilise des cookies techniques nécessaires à son bon fonctionnement (session utilisateur, préférences). Aucun cookie de traçage publicitaire n'est déposé sans votre consentement explicite.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-link"></i> Liens hypertextes</h2>
+            <p>Le site peut contenir des liens vers d'autres sites internet. StageHub SAS ne peut être tenu responsable du contenu de ces sites tiers et n'engage pas sa responsabilité quant aux informations qui y sont publiées.</p>
+        </section>
+
+        <p class="legal-update">Dernière mise à jour : 28 mars 2026</p>
+
+    </div>
+</div>
+
+<?php require __DIR__ . '/layout/footer.php'; ?>

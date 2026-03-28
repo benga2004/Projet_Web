@@ -21,7 +21,7 @@ class OfferController {
 
     public function index(): void {
 
-        $tilte = "Accueil - StageHub";
+        $title = "Accueil - StageHub";
         $content = "Bienvenue sur StageHub, votre plateforme de référence pour trouver les meilleures offres de stage en entreprise. Explorez notre large sélection d'opportunités de stage, postulez facilement et lancez votre carrière dès aujourd'hui !";
 
         require BASE_PATH . '/app/views/layout/header.php';
@@ -37,7 +37,11 @@ class OfferController {
         $offset  = ($page - 1) * $this->parPage;
         $offresPage = $model->search($query, $ville, $domaine, $this->parPage, $offset);
         $total      = $model->countFiltered($query, $ville, $domaine);
-        $pages      = (int)ceil(max(1, $total) / $this->parPage);
+        $pages      = (int)ceil(max(1, $total) / $this->parPage);        $wishlistIds = isset($_SESSION['user_id'])
+            ? (new Wishlist())->getIdsByEtudiant((int)$_SESSION['user_id'])
+            : [];        $wishlistIds = isset($_SESSION['user_id'])
+            ? (new Wishlist())->getIdsByEtudiant((int)$_SESSION['user_id'])
+            : [];
 
         require BASE_PATH . '/app/views/offers/list.php';
         require BASE_PATH . '/app/views/layout/footer.php';
@@ -61,6 +65,9 @@ class OfferController {
         $offresPage = $model->search($query, $ville, $domaine, $this->parPage, $offset);
         $total      = $model->countFiltered($query, $ville, $domaine);
         $pages      = (int)ceil(max(1, $total) / $this->parPage);
+        $wishlistIds = isset($_SESSION['user_id'])
+            ? (new Wishlist())->getIdsByEtudiant((int)$_SESSION['user_id'])
+            : [];
 
         require BASE_PATH . '/app/views/offers/list.php';
         require BASE_PATH . '/app/views/layout/footer.php';

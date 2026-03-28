@@ -44,3 +44,36 @@ if (customAvantageInput) {
         if (e.key === 'Enter') { e.preventDefault(); addCustomAvantage(); }
     });
 }
+
+// ============================================
+// Wishlist — toggle bookmark par fetch
+// ============================================
+document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.wishlist-btn');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    const offreId = btn.dataset.offre;
+    const fd      = new FormData();
+    fd.append('offre_id', offreId);
+
+    const url = (window.BASE_URL || '/') + 'wishlist/toggle';
+
+    fetch(url, { method: 'POST', body: fd })
+        .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function (data) {
+            if (data.error === 'not_logged_in') {
+                window.location.href = (window.BASE_URL || '/') + 'connexion';
+                return;
+            }
+            const inWL = data.in_wishlist;
+            btn.classList.toggle('active', inWL);
+            btn.title = inWL ? 'Retirer de la wishlist' : 'Ajouter \u00e0 la wishlist';
+            btn.querySelector('i').className = inWL ? 'fas fa-bookmark' : 'far fa-bookmark';
+        })
+        .catch(function (err) { console.error('Wishlist error:', err); });
+});

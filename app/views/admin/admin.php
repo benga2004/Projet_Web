@@ -1,7 +1,7 @@
 <?php
 
 $title      = "Dashboard Admin - StageHub";
-$extra_css  = '<link rel="stylesheet" href="' . BASE_URL . 'css/admin.css">';
+$extra_css  = '<link rel="stylesheet" href="' . BASE_URL . 'css/admin.css?v=2">';
 
 $custom_header = '
 <header class="header">
