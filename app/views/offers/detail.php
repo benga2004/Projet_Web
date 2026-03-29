@@ -34,7 +34,7 @@ require __DIR__ . '/../layout/header.php';
             <span>Rémunération</span>
             <strong>
                 <?= htmlspecialchars($offre['remuneration'] ?? '—', ENT_QUOTES, 'UTF-8') ?>
-                <?= $offre['r_period'] ? ' / ' . htmlspecialchars($offre['r_period'], ENT_QUOTES, 'UTF-8') : '' ?>
+                <?= !empty($offre['r_period']) ? ' / ' . htmlspecialchars($offre['r_period'], ENT_QUOTES, 'UTF-8') : '' ?>
             </strong>
         </div>
     </section>
