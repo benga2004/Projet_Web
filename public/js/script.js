@@ -46,10 +46,16 @@ if (customAvantageInput) {
 }
 
 // Synchronise le contenu de l'éditeur vers le champ caché avant envoi
-document.querySelector('form').addEventListener('submit', function() {
-    document.getElementById('jobDescriptionHidden').value = 
-        document.getElementById('jobDescription').innerHTML;
-});
+// (uniquement sur la page qui possède l'éditeur riche)
+const jobDescEditor = document.getElementById('jobDescription');
+if (jobDescEditor) {
+    const editorForm = jobDescEditor.closest('form');
+    if (editorForm) {
+        editorForm.addEventListener('submit', function () {
+            document.getElementById('jobDescriptionHidden').value = jobDescEditor.innerHTML;
+        });
+    }
+}
 // ============================================
 // Wishlist — toggle bookmark par fetch
 // ============================================

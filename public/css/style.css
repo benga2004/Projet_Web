@@ -1486,6 +1486,18 @@ main.content {
         display: block;
     }
 
+    /* Réduire le padding des liens pour éviter le débordement
+       quand plusieurs éléments de nav sont présents */
+    .nav-menu a {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .nav-username {
+        font-size: 13px;
+        padding: 4px 8px;
+    }
+
     main.content {
         padding: 32px 30px;
     }
