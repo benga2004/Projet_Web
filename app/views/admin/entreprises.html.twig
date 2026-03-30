@@ -1,0 +1,79 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Administration des entreprises - StageHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ base_url }}css/admin.css?v=3">
+{% endblock %}
+
+{% block page_header %}
+<header class="header">
+    <div class="header-logo">
+        <div class="header-logo-icon">S</div>
+        StageHub
+    </div>
+    <div class="header-right">
+        <div class="header-user">
+            <div>{{ session.user_prenom ?? 'Admin' }}</div>
+            <span class="role-badge">Administrateur</span>
+        </div>
+        <a href="{{ base_url }}deconnexion" class="btn-logout">&#x23FB;</a>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="admin-dashboard">
+    <div class="admin-hero admin-hero-compact">
+        <div>
+            <span class="admin-kicker">Administration</span>
+            <h1>Entreprises</h1>
+            <p>{{ entreprises|length }} entreprise(s) référencée(s) sur la plateforme.</p>
+        </div>
+        <div class="admin-hero-actions">
+            <a href="{{ base_url }}admin" class="admin-btn admin-btn-secondary">
+                <i class="bi bi-arrow-left"></i>
+                Retour au dashboard
+            </a>
+        </div>
+    </div>
+
+    <section class="admin-panel">
+        <div class="admin-panel-head">
+            <div>
+                <span class="admin-panel-kicker">Annuaire</span>
+                <h2>Liste des entreprises</h2>
+            </div>
+        </div>
+
+        {% if entreprises is empty %}
+            <p class="admin-empty">Aucune entreprise n'est disponible pour le moment.</p>
+        {% else %}
+        <div class="admin-table-wrap">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Ville</th>
+                        <th>Secteur</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entreprise in entreprises %}
+                    <tr>
+                        <td>{{ entreprise.nom ?? '' }}</td>
+                        <td>{{ entreprise.ville ?? '-' }}</td>
+                        <td>{{ entreprise.secteur ?? '-' }}</td>
+                        <td>{{ entreprise.email ?? '-' }}</td>
+                        <td>{{ entreprise.telephone ?? '-' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}
