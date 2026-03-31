@@ -2,7 +2,7 @@
 
 :root {
     --thing-size: 5px;
-    --thing-duration: 6s;
+    --thing-duration: 50s;
 }
 
 body {
@@ -10,7 +10,7 @@ body {
     background:
         radial-gradient(circle at center, rgba(42, 42, 42, 0.35) 0%, rgba(0, 0, 0, 0) 28%),
         radial-gradient(circle at top, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 38%),
-        #000000;
+        #2d3f74;
     position: relative;
     overflow-x: hidden;
 }

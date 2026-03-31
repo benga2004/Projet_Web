@@ -1,21 +1,5 @@
 <?php
 
-// include '../models/Offer.php';
-
-// $offres = Offer::getAll();
-
-// $parPage = 5;
-// $total   = count($offres);
-// $pages   = ceil($total / $parPage);
-
-// $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-// $page = max(1, min($page, $pages));
-
-// $debut      = ($page - 1) * $parPage;
-// $offresPage = array_slice($offres, $debut, $parPage);
-
-// require "../views/offers/list.php";
-
 class OfferController {
     private int $parPage = 8;
 
@@ -99,7 +83,10 @@ class OfferController {
                     ];
                     $entreprise = (new Company())->getByName($_SESSION['offer_begin1']['enterpriseNameSearch']);
                     if (!$entreprise) {
-                        echo "<script>alert('Entreprise non trouvée. Veuillez vérifier le nom ou créer un compte pour votre entreprise.');</script>";
+                        $_SESSION['flash'] = [
+                            'type' => 'error',
+                            'message' => 'Entreprise non trouvée. Veuillez vérifier le nom ou créer un compte pour votre entreprise.'
+                        ];
                         header('Location: ' . BASE_URL . 'offres/ajouter');
                         exit;
                     }
