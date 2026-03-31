@@ -36,18 +36,57 @@ margin-bottom:6px;
     text-align: center;
 }
 
-.offer-card .details-btn {
+.offer-actions-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.offer-card .details-btn,
+.offer-card .edit-btn,
+.offer-card .delete-btn {
     display: inline-block;
-    margin: 12px auto 0;
+    margin: 0;
     padding: 10px 16px;
     border-radius: 999px;
     text-decoration: none;
     color: #fff;
-    background: #2f6ad4;
     font-weight: 600;
-    border: 1px solid #2d66cc;
+    border: 1px solid transparent;
     box-shadow: 0 6px 14px rgba(40, 84, 178, 0.22);
     transition: background .2s, transform .2s;
+}
+
+.offer-card .details-btn {
+    background: #2f6ad4;
+    border-color: #2d66cc;
+}
+
+.offer-card .edit-btn {
+    background: #33a152;
+    border-color: #2c8f45;
+}
+
+.offer-card .delete-btn {
+    background: #d43d3d;
+    border-color: #b93131;
+}
+
+.offer-card .details-btn:hover,
+.offer-card .details-btn:focus,
+.offer-card .edit-btn:hover,
+.offer-card .edit-btn:focus,
+.offer-card .delete-btn:hover,
+.offer-card .delete-btn:focus {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.offer-card .delete-btn {
+    border: none;
+    cursor: pointer;
 }
 
 .offer-card .details-btn:hover,

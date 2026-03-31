@@ -1,77 +1,38 @@
 <?php
+class AdminController {
 
-class AdminController
-{
-    private function ensureAdmin(): void
-    {
+    private function guard(): void {
         if (empty($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') {
             header('Location: ' . BASE_URL . 'connexion');
             exit;
         }
     }
 
-    public function index(): void
-    {
-        $this->ensureAdmin();
+    public function index(): void {
+        $this->guard();
 
         $db = Database::connect();
 
-        $nbEntreprises = (int) $db->query('SELECT COUNT(*) FROM entreprises')->fetchColumn();
-        $nbOffres = (int) $db->query('SELECT COUNT(*) FROM offres')->fetchColumn();
-        $nbEtudiants = (int) $db->query("SELECT COUNT(*) FROM users WHERE role = 'etudiant'")->fetchColumn();
-        $nbPilotes = (int) $db->query("SELECT COUNT(*) FROM users WHERE role = 'pilote'")->fetchColumn();
-        $nbAdmins = (int) $db->query("SELECT COUNT(*) FROM users WHERE role = 'admin'")->fetchColumn();
+        $nbEntreprises  = (int) $db->query('SELECT COUNT(*) FROM entreprises')->fetchColumn();
+        $nbOffres       = (int) $db->query('SELECT COUNT(*) FROM offres')->fetchColumn();
+        $nbEtudiants    = (int) $db->query("SELECT COUNT(*) FROM users WHERE role = 'etudiant'")->fetchColumn();
+        $nbPilotes      = (int) $db->query("SELECT COUNT(*) FROM users WHERE role = 'pilote'")->fetchColumn();
+        $nbAdmins       = (int) $db->query("SELECT COUNT(*) FROM users WHERE role = 'admin'")->fetchColumn();
         $nbCandidatures = (int) $db->query('SELECT COUNT(*) FROM candidatures')->fetchColumn();
-        $nbWishlists = (int) $db->query('SELECT COUNT(*) FROM wishlist')->fetchColumn();
+        $nbWishlists    = (int) $db->query('SELECT COUNT(*) FROM wishlist')->fetchColumn();
 
         $stats = [
-            [
-                'icon' => 'bi bi-buildings-fill',
-                'value' => $nbEntreprises,
-                'label' => 'Entreprises',
-                'detail' => 'fiches partenaires',
-            ],
-            [
-                'icon' => 'bi bi-briefcase-fill',
-                'value' => $nbOffres,
-                'label' => 'Offres',
-                'detail' => 'publiees sur la plateforme',
-            ],
-            [
-                'icon' => 'bi bi-mortarboard-fill',
-                'value' => $nbEtudiants,
-                'label' => 'Etudiants',
-                'detail' => 'comptes en suivi',
-            ],
-            [
-                'icon' => 'bi bi-envelope-fill',
-                'value' => $nbCandidatures,
-                'label' => 'Candidatures',
-                'detail' => 'envoyees au total',
-            ],
+            ['icon' => 'bi bi-buildings-fill',  'value' => $nbEntreprises,  'label' => 'Entreprises',  'detail' => 'fiches partenaires'],
+            ['icon' => 'bi bi-briefcase-fill',   'value' => $nbOffres,       'label' => 'Offres',       'detail' => 'publiées sur la plateforme'],
+            ['icon' => 'bi bi-mortarboard-fill', 'value' => $nbEtudiants,    'label' => 'Étudiants',   'detail' => 'comptes en suivi'],
+            ['icon' => 'bi bi-envelope-fill',    'value' => $nbCandidatures, 'label' => 'Candidatures','detail' => 'envoyées au total'],
         ];
 
         $accountSummary = [
-            [
-                'label' => 'Admins',
-                'value' => $nbAdmins,
-                'tone' => 'tone-admin',
-            ],
-            [
-                'label' => 'Pilotes',
-                'value' => $nbPilotes,
-                'tone' => 'tone-pilote',
-            ],
-            [
-                'label' => 'Etudiants',
-                'value' => $nbEtudiants,
-                'tone' => 'tone-etudiant',
-            ],
-            [
-                'label' => 'Wishlists',
-                'value' => $nbWishlists,
-                'tone' => 'tone-wishlist',
-            ],
+            ['label' => 'Admins',     'value' => $nbAdmins,     'tone' => 'tone-admin'],
+            ['label' => 'Pilotes',    'value' => $nbPilotes,    'tone' => 'tone-pilote'],
+            ['label' => 'Étudiants',  'value' => $nbEtudiants,  'tone' => 'tone-etudiant'],
+            ['label' => 'Wishlists',  'value' => $nbWishlists,  'tone' => 'tone-wishlist'],
         ];
 
         $modules = [
@@ -118,17 +79,22 @@ class AdminController
 
         $adminName = $_SESSION['user_prenom'] ?? 'Admin';
 
-        require BASE_PATH . '/app/views/admin/admin.php';
+        echo twig_render('admin/admin.html.twig', [
+            'adminName'      => $adminName,
+            'stats'          => $stats,
+            'accountSummary' => $accountSummary,
+            'modules'        => $modules,
+            'recentUsers'    => $recentUsers,
+        ]);
     }
 
-    public function entreprises(): void
-    {
-        $this->ensureAdmin();
+    public function entreprises(): void {
+        $this->guard();
 
-        $companyModel = new Company();
-        $entreprises = $companyModel->getAll();
+        $entreprises = (new Company())->getAll();
 
-        require BASE_PATH . '/app/views/admin/entreprises.php';
+        echo twig_render('admin/entreprises.html.twig', [
+            'entreprises' => $entreprises,
+        ]);
     }
 }
-
