@@ -60,9 +60,22 @@ class Offer {
 
     public function update(int $id, array $data): bool {
         $stmt = $this->db->prepare('
-            UPDATE offres SET titre=:titre, description=:description WHERE id=:id
+            UPDATE offres SET titre=:titre, description=:description, entreprise_id=:entreprise_id, ville=:ville, domaine=:domaine, nb_souhaite=:nb_souhaite, duree=:duree, delai=:delai, remuneration=:remuneration, r_period=:r_period, avantages=:avantages WHERE id=:id
         ');
-        return $stmt->execute([':titre' => $data['titre'], ':description' => $data['description'], ':id' => $id]);
+        return $stmt->execute([
+            ':titre' => $data['titre'],
+            ':description' => $data['description'],
+            ':entreprise_id' => $data['entreprise_id'],
+            ':ville' => $data['ville'],
+            ':domaine' => $data['domaine'],
+            ':nb_souhaite' => $data['numberOfJob'] ?? 0,
+            ':duree' => $data['duree'] ?? '',
+            ':delai' => $data['delai'],
+            ':remuneration' => $data['minSalary'],
+            ':r_period' => $data['frequence'] ?? '',
+            ':avantages' => implode(',', $data['avantages'] ?? []),
+            ':id' => $id
+        ]);
     }
 
     public function delete(int $id): bool {

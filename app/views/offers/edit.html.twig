@@ -1,0 +1,83 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Modifier l'offre - StageHub{% endblock %}
+
+{% block content %}
+<h1>Modifier l'offre</h1>
+
+<form action="{{ base_url }}offres/modifier/update" method="POST">
+    <input type="hidden" name="id" value="{{ offre.id }}">
+
+    <fieldset>
+        <legend>Entreprise</legend>
+        <div class="form-group">
+            <label>Entreprise</label>
+            <input type="text" value="{{ offre.entreprise_nom|default('') }}" readonly>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Détails de l'offre</legend>
+
+        <div class="form-group">
+            <label for="titre">Titre *</label>
+            <input type="text" id="titre" name="titre" value="{{ offre.titre|default('') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea id="description" name="description" rows="8" required>{{ offre.description|default('') }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="ville">Ville *</label>
+            <input type="text" id="ville" name="ville" value="{{ offre.ville|default('') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="domaine">Domaine *</label>
+            <input type="text" id="domaine" name="domaine" value="{{ offre.domaine|default('') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nb_souhaite">Nombre de postes souhaités</label>
+            <input type="number" id="nb_souhaite" name="nb_souhaite" value="{{ offre.nb_souhaite|default(1) }}" min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="duree">Durée (ex: 3 mois)</label>
+            <input type="text" id="duree" name="duree" value="{{ offre.duree|default('') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="delai">Délai *</label>
+            <input type="text" id="delai" name="delai" value="{{ offre.delai|default('') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="remuneration">Rémunération (€)</label>
+            <input type="number" id="remuneration" name="remuneration" value="{{ offre.remuneration|default(0) }}" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="r_period">Fréquence</label>
+            <select id="r_period" name="r_period">
+                {% set periods = ['Mois', 'Semaine', 'Jour', 'Heure'] %}
+                <option value="">-- Sélectionnez --</option>
+                {% for p in periods %}
+                    <option value="{{ p }}" {% if offre.r_period == p %}selected{% endif %}>{{ p }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="avantages">Avantages (séparés par des virgules)</label>
+            <input type="text" id="avantages" name="avantages" value="{{ offre.avantages|default('') }}" placeholder="transport,cantine,rtt">
+        </div>
+
+    </fieldset>
+
+    <button type="submit" class="btn-submit">Mettre à jour l'offre</button>
+    <a class="btn-secondary" href="{{ base_url }}offres">Annuler</a>
+</form>
+{% endblock %}

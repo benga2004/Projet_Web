@@ -1,21 +1,5 @@
 <?php
 
-// include '../models/Offer.php';
-
-// $offres = Offer::getAll();
-
-// $parPage = 5;
-// $total   = count($offres);
-// $pages   = ceil($total / $parPage);
-
-// $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-// $page = max(1, min($page, $pages));
-
-// $debut      = ($page - 1) * $parPage;
-// $offresPage = array_slice($offres, $debut, $parPage);
-
-// require "../views/offers/list.php";
-
 class OfferController {
     private int $parPage = 8;
 
@@ -122,7 +106,10 @@ class OfferController {
                     ];
                     $entreprise = (new Company())->getByName($_SESSION['offer_begin1']['enterpriseNameSearch']);
                     if (!$entreprise) {
-                        echo "<script>alert('Entreprise non trouvée. Veuillez vérifier le nom ou créer un compte pour votre entreprise.');</script>";
+                        $_SESSION['flash'] = [
+                            'type' => 'error',
+                            'message' => 'Entreprise non trouvée. Veuillez vérifier le nom ou créer un compte pour votre entreprise.'
+                        ];
                         header('Location: ' . BASE_URL . 'offres/ajouter');
                         exit;
                     }
@@ -208,6 +195,102 @@ class OfferController {
         (new Offer())->create($data);
         unset($_SESSION['offer_step1']);
         $_SESSION['success_message'] = '✅ Offre de stage ajoutée avec succès !';
+        header('Location: ' . BASE_URL . 'offres');
+        exit;
+    }
+
+    private function authorizeAdminOrPilote(): void {
+        if (!isset($_SESSION['user_role']) || !in_array($_SESSION['user_role'], ['admin', 'pilote'])) {
+            $_SESSION['flash'] = [
+                'type' => 'error',
+                'message' => 'Accès refusé : réservé aux administrateur ou pilote.'
+            ];
+            header('Location: ' . BASE_URL . 'connexion');
+            exit;
+        }
+    }
+
+    public function edit(): void {
+        $this->authorizeAdminOrPilote();
+        $id = (int)($_GET['id'] ?? 0);
+        $offre = (new Offer())->getById($id);
+        if (!$offre) {
+            http_response_code(404);
+            echo twig_render('errors/404.html.twig', []);
+            return;
+        }
+        $company = (new Company())->getById($offre['entreprise_id']);
+        $offre['entreprise_nom'] = $company['nom'] ?? '';
+        echo twig_render('offers/edit.html.twig', ['offre' => $offre]);
+    }
+
+    public function update(): void {
+        $this->authorizeAdminOrPilote();
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: ' . BASE_URL . 'offres');
+            exit;
+        }
+
+        $id = (int)($_POST['id'] ?? 0);
+        $offre = (new Offer())->getById($id);
+        if (!$offre) {
+            http_response_code(404);
+            echo twig_render('errors/404.html.twig', []);
+            return;
+        }
+
+        $data = [
+            'titre' => htmlspecialchars(trim($_POST['titre'] ?? '')),
+            'description' => strip_tags($_POST['description'] ?? '', '<p><strong><ul><li><br><em><h2><h3>'),
+            'entreprise_id' => $offre['entreprise_id'],
+            'ville' => htmlspecialchars(trim($_POST['ville'] ?? '')),
+            'domaine' => htmlspecialchars(trim($_POST['domaine'] ?? '')),
+            'numberOfJob' => (int)($_POST['nb_souhaite'] ?? 0),
+            'duree' => htmlspecialchars(trim($_POST['duree'] ?? '')),
+            'delai' => htmlspecialchars(trim($_POST['delai'] ?? '')),
+            'minSalary' => (int)($_POST['remuneration'] ?? 0),
+            'frequence' => htmlspecialchars(trim($_POST['r_period'] ?? '')),
+            'avantages' => array_filter(array_map('trim', explode(',', $_POST['avantages'] ?? ''))),
+        ];
+
+        if ((new Offer())->update($id, $data)) {
+            $_SESSION['success_message'] = '✅ Offre mise à jour avec succès.';
+            header('Location: ' . BASE_URL . 'offres');
+            exit;
+        }
+
+        $_SESSION['flash'] = [
+            'type' => 'error',
+            'message' => 'Erreur lors de la mise à jour de l’offre.'
+        ];
+        header('Location: ' . BASE_URL . 'offres/modifier?id=' . $id);
+        exit;
+    }
+
+    public function delete(): void {
+        $this->authorizeAdminOrPilote();
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: ' . BASE_URL . 'offres');
+            exit;
+        }
+
+        $id = (int)($_POST['id'] ?? 0);
+        if ($id === 0 || !(new Offer())->getById($id)) {
+            http_response_code(404);
+            echo twig_render('errors/404.html.twig', []);
+            return;
+        }
+
+        if ((new Offer())->delete($id)) {
+            $_SESSION['success_message'] = '✅ Offre supprimée avec succès.';
+            header('Location: ' . BASE_URL . 'offres');
+            exit;
+        }
+
+        $_SESSION['flash'] = [
+            'type' => 'error',
+            'message' => 'Impossible de supprimer l’offre.'
+        ];
         header('Location: ' . BASE_URL . 'offres');
         exit;
     }

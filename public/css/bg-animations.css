@@ -2,7 +2,7 @@
 
 :root {
     --thing-size: 5px;
-    --thing-duration: 6s;
+    --thing-duration: 50s;
 }
 
 body {

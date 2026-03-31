@@ -69,7 +69,17 @@
     <p>Durée : {{ offre.duree }}</p>
     <p>Domaine : {{ offre.domaine }}</p>
 
-    <a class="details-btn" href="{{ base_url }}offres/detail?id={{ offre.id }}">Détails</a>
+    <div class="offer-actions-row">
+        <a class="details-btn" href="{{ base_url }}offres/detail?id={{ offre.id }}">Détails</a>
+
+        {% if session.user_role in ['admin', 'pilote'] %}
+            <a class="edit-btn" href="{{ base_url }}offres/modifier?id={{ offre.id }}">Modifier</a>
+            <form class="delete-form" action="{{ base_url }}offres/supprimer" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette offre ?');">
+                <input type="hidden" name="id" value="{{ offre.id }}">
+                <button type="submit" class="delete-btn">Supprimer l'offre</button>
+            </form>
+        {% endif %}
+    </div>
 </div>
 {% endfor %}
 </div>

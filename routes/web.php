@@ -83,7 +83,15 @@ switch ($url) {
             header('Location: ' . BASE_URL . 'connexion');
             exit;
         }
-        (new OfferController())->add();
+        break;
+    case 'offres/modifier':
+        (new OfferController())->edit();
+        break;
+    case 'offres/modifier/update':
+        (new OfferController())->update();
+        break;
+    case 'offres/supprimer':
+        (new OfferController())->delete();
         break;
     case 'offres/ajouter/etape1':
         (new OfferController())->addStep1();
