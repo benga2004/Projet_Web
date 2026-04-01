@@ -2,6 +2,22 @@
 class CandidatureController {
 
     public function index(): void {
+        try {
+            $this->handleIndex();
+        } catch (\Throwable $e) {
+            error_log('[CANDIDATURE ERROR] ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
+            error_log('[CANDIDATURE TRACE] ' . $e->getTraceAsString());
+            // Affiche l'erreur pour debug (à retirer en production)
+            echo '<pre style="color:red;background:#fff;padding:20px;">';
+            echo 'ERREUR: ' . htmlspecialchars($e->getMessage()) . "\n";
+            echo 'Fichier: ' . htmlspecialchars($e->getFile()) . ':' . $e->getLine() . "\n";
+            echo htmlspecialchars($e->getTraceAsString());
+            echo '</pre>';
+            exit;
+        }
+    }
+
+    private function handleIndex(): void {
         // Guard: doit être connecté
         if (empty($_SESSION['user_id'])) {
             $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -16,6 +32,15 @@ class CandidatureController {
 
         // Charger les infos utilisateur pour pré-remplir le formulaire
         $user = (new User())->findById($etudiant_id);
+
+        // Si le user_id en session ne correspond à aucun utilisateur en base,
+        // la session est obsolète → forcer une reconnexion
+        if (empty($user)) {
+            session_unset();
+            session_destroy();
+            header('Location: ' . BASE_URL . 'connexion');
+            exit;
+        }
 
         if (!$offre_id) {
             $erreurs[] = 'Aucune offre sélectionnée.';
@@ -41,11 +66,20 @@ class CandidatureController {
             if (!isset($_FILES['cv']) || $_FILES['cv']['error'] !== UPLOAD_ERR_OK) {
                 $erreurs[] = 'CV obligatoire (PDF).';
             } else {
-                $finfo = finfo_open(FILEINFO_MIME_TYPE);
-                if (finfo_file($finfo, $_FILES['cv']['tmp_name']) !== 'application/pdf') {
+                // Vérifier l'extension
+                $ext = strtolower(pathinfo($_FILES['cv']['name'], PATHINFO_EXTENSION));
+                if ($ext !== 'pdf') {
                     $erreurs[] = 'Le CV doit être un fichier PDF.';
                 }
-                finfo_close($finfo);
+                // Vérifier les magic bytes (signature PDF : %PDF)
+                $header = file_get_contents($_FILES['cv']['tmp_name'], false, null, 0, 5);
+                if (strpos($header, '%PDF') !== 0) {
+                    $erreurs[] = 'Le fichier ne semble pas être un PDF valide.';
+                }
+                // Vérifier la taille (2 Mo max)
+                if ($_FILES['cv']['size'] > 2 * 1024 * 1024) {
+                    $erreurs[] = 'Le CV ne doit pas dépasser 2 Mo.';
+                }
             }
 
             // Sauvegarde si pas d'erreurs
