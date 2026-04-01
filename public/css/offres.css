@@ -44,54 +44,89 @@ margin-bottom:6px;
     margin-top: 12px;
 }
 
+/* --- Offer info items with icons --- */
+.offer-info-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.offer-info-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #f0f5ff;
+    color: #3b5998;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid #dce6f5;
+}
+
+.offer-info-item i {
+    font-size: 0.78rem;
+    color: #5a7fbf;
+}
+
+/* --- Action buttons (Voir / Modifier / Supprimer) --- */
 .offer-card .details-btn,
 .offer-card .edit-btn,
 .offer-card .delete-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     margin: 0;
-    padding: 10px 16px;
+    padding: 8px 18px;
     border-radius: 999px;
     text-decoration: none;
-    color: #fff;
+    font-size: 0.85rem;
     font-weight: 600;
-    border: 1px solid transparent;
-    box-shadow: 0 6px 14px rgba(40, 84, 178, 0.22);
-    transition: background .2s, transform .2s;
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s, transform .15s, box-shadow .2s;
 }
 
 .offer-card .details-btn {
-    background: #2b84b0;
-    border-color: #2b84b0;
-}
-
-.offer-card .edit-btn {
-    background: #33a152;
-    border-color: #2c8f45;
-}
-
-.offer-card .delete-btn {
-    background: #d43d3d;
-    border-color: #b93131;
-}
-
-.offer-card .details-btn:hover,
-.offer-card .details-btn:focus,
-.offer-card .edit-btn:hover,
-.offer-card .edit-btn:focus,
-.offer-card .delete-btn:hover,
-.offer-card .delete-btn:focus {
-    transform: translateY(-1px);
-    opacity: 0.95;
-}
-
-.offer-card .delete-btn {
-    border: none;
-    cursor: pointer;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1.5px solid #d1d5db;
 }
 
 .offer-card .details-btn:hover,
 .offer-card .details-btn:focus {
-    background: #3471e2;
+    background: #e5e7eb;
+    color: #1f2937;
+    border-color: #9ca3af;
+    transform: translateY(-1px);
+}
+
+.offer-card .edit-btn {
+    background: #1f2937;
+    color: #ffffff;
+    border: 1.5px solid #1f2937;
+}
+
+.offer-card .edit-btn:hover,
+.offer-card .edit-btn:focus {
+    background: #374151;
+    border-color: #374151;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(31, 41, 55, 0.3);
+}
+
+.offer-card .delete-btn {
+    background: transparent;
+    color: #ef4444;
+    border: 1.5px solid #fca5a5;
+}
+
+.offer-card .delete-btn:hover,
+.offer-card .delete-btn:focus {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #ef4444;
     transform: translateY(-1px);
 }
 

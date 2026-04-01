@@ -53,23 +53,44 @@
 
 {% block extra_js %}
 <script>
-// Retire la carte de la wishlist quand on clique sur le cœur depuis cette page
+// Retire la carte de la wishlist quand on clique sur le bookmark depuis cette page
+// On utilise e.stopPropagation() pour empêcher le handler global (script.js) de se déclencher aussi
 document.querySelectorAll('.wishlist-page .wishlist-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-        const offreId = this.dataset.offre;
-        const card    = document.getElementById('wl-card-' + offreId);
-        const fd      = new FormData();
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var self    = this;
+        var offreId = self.dataset.offre;
+        var card    = document.getElementById('wl-card-' + offreId);
+        var fd      = new FormData();
         fd.append('offre_id', offreId);
 
-        fetch('{{ base_url }}wishlist/toggle', { method: 'POST', body: fd })
-            .then(r => r.json())
+        fetch('{{ base_url }}wishlist/toggle', { method: 'POST', body: fd, credentials: 'same-origin' })
+            .then(function(r) { return r.json(); })
             .then(function(data) {
-                if (!data.in_wishlist && card) {
-                    card.style.transition = 'opacity .3s';
-                    card.style.opacity    = '0';
-                    setTimeout(function() { card.remove(); }, 300);
+                if (data.error) {
+                    console.error('Wishlist error:', data.error);
+                    return;
                 }
-            });
+                if (!data.in_wishlist && card) {
+                    card.style.transition = 'opacity .3s, transform .3s';
+                    card.style.opacity    = '0';
+                    card.style.transform  = 'scale(0.95)';
+                    setTimeout(function() {
+                        card.remove();
+                        // Met à jour le compteur
+                        var remaining = document.querySelectorAll('.wishlist-grid .offer-card').length;
+                        var heroP = document.querySelector('.wishlist-page .legal-hero p');
+                        if (remaining === 0) {
+                            location.reload();
+                        } else if (heroP) {
+                            heroP.textContent = remaining + ' offre' + (remaining > 1 ? 's' : '') + ' sauvegardée' + (remaining > 1 ? 's' : '');
+                        }
+                    }, 300);
+                }
+            })
+            .catch(function(err) { console.error('Wishlist error:', err); });
     });
 });
 </script>

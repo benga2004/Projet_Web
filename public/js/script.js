@@ -108,25 +108,44 @@ document.addEventListener('click', function (e) {
     e.stopPropagation();
 
     const offreId = btn.dataset.offre;
+    console.log('[WL] Click detected, offre_id=' + offreId);
+
     const fd      = new FormData();
     fd.append('offre_id', offreId);
 
     const url = (window.BASE_URL || '/') + 'wishlist/toggle';
+    console.log('[WL] Fetching:', url);
 
-    fetch(url, { method: 'POST', body: fd })
+    fetch(url, { method: 'POST', body: fd, credentials: 'same-origin' })
         .then(function (r) {
-            if (!r.ok) throw new Error('HTTP ' + r.status);
-            return r.json();
+            console.log('[WL] Response status:', r.status, 'content-type:', r.headers.get('content-type'));
+            if (!r.ok) {
+                return r.text().then(function(txt) {
+                    console.error('[WL] Error response body:', txt);
+                    throw new Error('HTTP ' + r.status);
+                });
+            }
+            return r.text().then(function(txt) {
+                console.log('[WL] Raw response:', txt);
+                return JSON.parse(txt);
+            });
         })
         .then(function (data) {
+            if (!data) return;
+            console.log('[WL] Parsed data:', data);
             if (data.error === 'not_logged_in') {
                 window.location.href = (window.BASE_URL || '/') + 'connexion';
                 return;
             }
-            const inWL = data.in_wishlist;
+            if (data.error) {
+                console.error('Wishlist server error:', data.error);
+                return;
+            }
+            var inWL = data.in_wishlist;
             btn.classList.toggle('active', inWL);
             btn.title = inWL ? 'Retirer de la wishlist' : 'Ajouter \u00e0 la wishlist';
-            btn.querySelector('i').className = inWL ? 'fas fa-bookmark' : 'far fa-bookmark';
+            var icon = btn.querySelector('i');
+            if (icon) icon.className = inWL ? 'fas fa-bookmark' : 'far fa-bookmark';
         })
-        .catch(function (err) { console.error('Wishlist error:', err); });
+        .catch(function (err) { console.error('[WL] Fetch error:', err); });
 });
