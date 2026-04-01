@@ -8,73 +8,163 @@
     <div class="legal-hero">
         <div class="legal-hero-icon"><i class="fas fa-user-shield" aria-hidden="true"></i></div>
         <h1>Politique de confidentialité</h1>
-        <p>Vos données personnelles nous tiennent à cœur. Voici comment nous les collectons, les utilisons et les protégeons.</p>
+        <p>StageHub s'engage à protéger la vie privée de ses utilisateurs. Cette politique détaille la manière dont vos données personnelles sont collectées, utilisées et protégées.</p>
     </div>
 
     <div class="legal-body">
 
         <section class="legal-section">
-            <h2><i class="fas fa-database"></i> Données collectées</h2>
-            <p>Lors de votre utilisation de StageHub, nous collectons les données suivantes :</p>
+            <h2><i class="fas fa-user-tie"></i> 1. Responsable du traitement</h2>
+            <p>Le responsable du traitement des données à caractère personnel est :</p>
             <ul class="legal-list">
-                <li><strong>Création de compte :</strong> nom, prénom, adresse email, mot de passe (hashé), rôle (étudiant / pilote).</li>
-                <li><strong>Candidature :</strong> nom, prénom, email, lettre de motivation, fichier CV (PDF).</li>
-                <li><strong>Navigation :</strong> adresse IP, navigateur, pages visitées (données de session uniquement, non transmises à des tiers).</li>
+                <li><strong>StageHub SAS</strong> (projet pédagogique CESI)</li>
+                <li><strong>Adresse :</strong> 1 Boulevard de l'Université, 44600 Saint-Nazaire, France</li>
+                <li><strong>Email du DPO :</strong> <a href="mailto:contact@stagehub.fr">contact@stagehub.fr</a></li>
             </ul>
         </section>
 
         <section class="legal-section">
-            <h2><i class="fas fa-bullseye"></i> Finalités du traitement</h2>
-            <p>Les données collectées sont utilisées exclusivement pour :</p>
+            <h2><i class="fas fa-database"></i> 2. Données collectées</h2>
+            <p>Dans le cadre de l'utilisation de StageHub, nous collectons les catégories de données suivantes :</p>
+
+            <h3>2.1 Données d'identification</h3>
             <ul class="legal-list">
-                <li>Créer et gérer votre compte utilisateur.</li>
-                <li>Traiter et transmettre vos candidatures aux entreprises partenaires.</li>
-                <li>Vous envoyer des notifications relatives à vos candidatures.</li>
-                <li>Améliorer les fonctionnalités de la plateforme.</li>
+                <li>Nom et prénom</li>
+                <li>Adresse email</li>
+                <li>Mot de passe (stocké sous forme hashée avec bcrypt — jamais en clair)</li>
+                <li>Rôle sur la plateforme (étudiant, pilote, administrateur)</li>
             </ul>
-            <p>Elles ne sont <strong>jamais vendues ni cédées</strong> à des tiers à des fins commerciales.</p>
+
+            <h3>2.2 Données de candidature</h3>
+            <ul class="legal-list">
+                <li>Lettre de motivation (texte saisi dans le formulaire)</li>
+                <li>Curriculum Vitae (fichier PDF téléversé)</li>
+                <li>Date et heure de la candidature</li>
+            </ul>
+
+            <h3>2.3 Données techniques de navigation</h3>
+            <ul class="legal-list">
+                <li>Adresse IP</li>
+                <li>Type et version du navigateur</li>
+                <li>Pages visitées et horodatage des accès (journaux serveur)</li>
+            </ul>
+            <p>Ces données techniques sont collectées automatiquement par le serveur et ne sont pas associées à votre compte utilisateur.</p>
         </section>
 
         <section class="legal-section">
-            <h2><i class="fas fa-clock"></i> Durée de conservation</h2>
+            <h2><i class="fas fa-bullseye"></i> 3. Finalités et bases juridiques du traitement</h2>
+            <table class="legal-table" style="width:100%; border-collapse:collapse; margin:1rem 0;">
+                <thead>
+                    <tr style="text-align:left;">
+                        <th style="padding:0.5rem; border-bottom:2px solid rgba(255,255,255,0.15);">Finalité</th>
+                        <th style="padding:0.5rem; border-bottom:2px solid rgba(255,255,255,0.15);">Base juridique (RGPD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08);">Création et gestion de votre compte utilisateur</td>
+                        <td style="padding:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08);">Exécution du contrat (art. 6.1.b)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08);">Traitement et transmission de vos candidatures aux entreprises</td>
+                        <td style="padding:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08);">Exécution du contrat (art. 6.1.b)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08);">Gestion de la wishlist (favoris)</td>
+                        <td style="padding:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08);">Exécution du contrat (art. 6.1.b)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08);">Sécurité de la plateforme et prévention des abus</td>
+                        <td style="padding:0.5rem; border-bottom:1px solid rgba(255,255,255,0.08);">Intérêt légitime (art. 6.1.f)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.5rem;">Journaux de connexion (logs serveur)</td>
+                        <td style="padding:0.5rem;">Obligation légale (art. 6.1.c — LCEN)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Vos données ne sont <strong>jamais vendues, louées ou cédées</strong> à des tiers à des fins commerciales ou publicitaires.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-share-alt"></i> 4. Destinataires des données</h2>
+            <p>Vos données personnelles sont accessibles exclusivement aux catégories de personnes suivantes :</p>
             <ul class="legal-list">
-                <li><strong>Compte utilisateur :</strong> conservé tant que le compte est actif, puis supprimé dans un délai de 3 ans après la dernière connexion.</li>
-                <li><strong>CV et candidatures :</strong> conservés 2 ans après le dépôt.</li>
-                <li><strong>Données de connexion :</strong> conservées 12 mois.</li>
+                <li><strong>L'équipe StageHub</strong> (administrateurs, pilotes) pour la gestion de la plateforme.</li>
+                <li><strong>Les entreprises partenaires</strong>, uniquement dans le cadre d'une candidature que vous avez volontairement soumise (CV + lettre de motivation).</li>
+                <li><strong>L'hébergeur</strong> (Microsoft Azure) pour l'infrastructure technique, dans le respect du RGPD.</li>
+            </ul>
+            <p>Aucun transfert de données en dehors de l'Espace Économique Européen (EEE) n'est effectué, sauf garanties appropriées (clauses contractuelles types de la Commission européenne pour Azure).</p>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-clock"></i> 5. Durée de conservation</h2>
+            <ul class="legal-list">
+                <li><strong>Compte utilisateur :</strong> conservé tant que le compte est actif. Les comptes inactifs depuis plus de <strong>3 ans</strong> (aucune connexion) sont supprimés automatiquement.</li>
+                <li><strong>CV et candidatures :</strong> conservés <strong>2 ans</strong> à compter de la date de dépôt, puis supprimés.</li>
+                <li><strong>Données de connexion (logs) :</strong> conservées <strong>12 mois</strong> conformément à l'article 6 de la LCEN.</li>
+                <li><strong>Données du formulaire de contact :</strong> conservées <strong>12 mois</strong> après traitement de la demande.</li>
+            </ul>
+            <p>Au-delà de ces durées, les données sont supprimées de manière définitive ou anonymisées de façon irréversible.</p>
+        </section>
+
+        <section class="legal-section">
+            <h2><i class="fas fa-lock"></i> 6. Sécurité des données</h2>
+            <p>Nous mettons en œuvre les mesures techniques et organisationnelles suivantes :</p>
+            <ul class="legal-list">
+                <li><strong>Hachage des mots de passe</strong> avec l'algorithme bcrypt (coût adaptatif). Aucun mot de passe n'est stocké en clair.</li>
+                <li><strong>Chiffrement des communications</strong> via HTTPS/TLS sur l'ensemble du site.</li>
+                <li><strong>Stockage sécurisé des CV</strong> dans un répertoire serveur privé, non accessible par URL directe.</li>
+                <li><strong>Protection contre les injections SQL</strong> via l'utilisation systématique de requêtes préparées (PDO).</li>
+                <li><strong>Contrôle des accès</strong> basé sur les rôles (étudiant, pilote, administrateur).</li>
+                <li><strong>Validation des fichiers</strong> téléversés (type MIME, extension, taille maximale).</li>
             </ul>
         </section>
 
         <section class="legal-section">
-            <h2><i class="fas fa-lock"></i> Sécurité</h2>
-            <p>Nous mettons en œuvre les mesures techniques et organisationnelles suivantes pour protéger vos données :</p>
+            <h2><i class="fas fa-hand-paper"></i> 7. Vos droits (RGPD)</h2>
+            <p>Conformément au Règlement (UE) 2016/679 et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
             <ul class="legal-list">
-                <li>Mots de passe hashés avec bcrypt (jamais stockés en clair).</li>
-                <li>Communications chiffrées via HTTPS/TLS.</li>
-                <li>Accès aux données restreint au personnel autorisé.</li>
-                <li>CV stockés dans un répertoire privé, non accessible publiquement.</li>
+                <li><strong>Droit d'accès</strong> (art. 15) : obtenir la confirmation que des données vous concernant sont traitées et en recevoir une copie.</li>
+                <li><strong>Droit de rectification</strong> (art. 16) : faire corriger des données inexactes ou incomplètes.</li>
+                <li><strong>Droit à l'effacement</strong> (art. 17) : demander la suppression de vos données, dans les limites prévues par la loi.</li>
+                <li><strong>Droit à la limitation</strong> (art. 18) : demander la suspension temporaire du traitement de vos données.</li>
+                <li><strong>Droit à la portabilité</strong> (art. 20) : recevoir vos données dans un format structuré, couramment utilisé et lisible par machine.</li>
+                <li><strong>Droit d'opposition</strong> (art. 21) : vous opposer au traitement de vos données pour des motifs légitimes.</li>
             </ul>
+            <p><strong>Pour exercer vos droits :</strong></p>
+            <ul class="legal-list">
+                <li>Par email : <a href="mailto:contact@stagehub.fr">contact@stagehub.fr</a></li>
+                <li>Via notre <a href="{{ base_url }}contact">formulaire de contact</a></li>
+            </ul>
+            <p>Nous nous engageons à répondre dans un délai maximum de <strong>30 jours</strong> à compter de la réception de votre demande. Un justificatif d'identité pourra vous être demandé.</p>
+            <p>Vous pouvez également introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) :<br>
+            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a> — 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.</p>
         </section>
 
         <section class="legal-section">
-            <h2><i class="fas fa-hand-paper"></i> Vos droits (RGPD)</h2>
-            <p>Conformément au RGPD (Règlement UE 2016/679), vous disposez des droits suivants :</p>
+            <h2><i class="fas fa-cookie"></i> 8. Cookies</h2>
+            <p>StageHub utilise uniquement un <strong>cookie technique de session</strong> (PHPSESSID), indispensable au fonctionnement du site. Ce cookie permet de maintenir votre session de connexion active pendant la navigation.</p>
             <ul class="legal-list">
-                <li><strong>Droit d'accès</strong> : obtenir une copie de vos données.</li>
-                <li><strong>Droit de rectification</strong> : corriger des données inexactes.</li>
-                <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données.</li>
-                <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré.</li>
-                <li><strong>Droit d'opposition</strong> : vous opposer à certains traitements.</li>
+                <li><strong>Nom :</strong> PHPSESSID</li>
+                <li><strong>Finalité :</strong> identification de session utilisateur</li>
+                <li><strong>Durée :</strong> supprimé à la fermeture du navigateur</li>
+                <li><strong>Type :</strong> cookie strictement nécessaire (exempt de consentement — CNIL)</li>
             </ul>
-            <p>Pour exercer ces droits : <a href="mailto:yannickbryann.foutefoka@viacesi.fr">yannickbryann.foutefoka@viacesi.fr</a> ou via notre <a href="{{ base_url }}contact">formulaire de contact</a>. Réponse sous 30 jours.</p>
-            <p>Vous pouvez également introduire une réclamation auprès de la <strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>.</p>
+            <p>Aucun cookie publicitaire, analytique (Google Analytics, etc.) ou de profilage n'est utilisé sur StageHub.</p>
         </section>
 
         <section class="legal-section">
-            <h2><i class="fas fa-cookie"></i> Cookies</h2>
-            <p>Nous utilisons uniquement des cookies techniques indispensables au fonctionnement du site (identifiant de session PHP). Aucun cookie publicitaire ou de profilage n'est utilisé.</p>
+            <h2><i class="fas fa-child"></i> 9. Mineurs</h2>
+            <p>StageHub est destiné aux étudiants de l'enseignement supérieur. Si vous êtes mineur (moins de 16 ans), l'utilisation de la plateforme requiert le consentement de votre représentant légal conformément à l'article 8 du RGPD.</p>
         </section>
 
-        <p class="legal-update">Dernière mise à jour : 28 mars 2026</p>
+        <section class="legal-section">
+            <h2><i class="fas fa-sync-alt"></i> 10. Modification de la politique</h2>
+            <p>La présente politique de confidentialité peut être mise à jour à tout moment pour refléter des changements dans nos pratiques ou pour des raisons réglementaires. La date de dernière mise à jour figure en bas de cette page. Nous vous invitons à la consulter régulièrement.</p>
+        </section>
+
+        <p class="legal-update">Dernière mise à jour : 1<sup>er</sup> avril 2026</p>
 
     </div>
 </div>
