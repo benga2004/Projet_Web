@@ -232,7 +232,7 @@ class AdminController {
     }
 
     public function entreprises(): void {
-        $this->guard();
+        $this->guardAdminOrPilote();
 
         $companyModel = new Company();
         $enterpriseFlash = $this->consumeEnterpriseFlash();
